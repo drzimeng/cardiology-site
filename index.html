@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孟自力 · 心血管病专家科普平台 | 用心守护每一次心跳</title>
+<meta name="description" content="心血管病专家、主任医师孟自力的医学科普平台：卵圆孔未闭（PFO）、心脏瓣膜病、冠心病、先心病、大血管疾病诊疗科普，以及心血管疾病预防保健、饮食营养、护心烹饪与科学运动知识。">
+<style>
+:root{
+  --crimson:#b3382e;
+  --crimson-deep:#8c2620;
+  --crimson-soft:#f7ebe9;
+  --ink:#2b2b2f;
+  --ink-soft:#5c5c66;
+  --paper:#faf8f5;
+  --card:#ffffff;
+  --line:#e8e2da;
+  --green:#4a7c59;
+  --amber:#b07a2a;
+  --red-flag:#a63226;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(60,30,25,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background:var(--paper);color:var(--ink);
+  line-height:1.85;font-size:16.5px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;letter-spacing:.18em;color:var(--crimson);font-weight:600;margin-bottom:14px;text-transform:uppercase}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--crimson)}
+h2.sec-title{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:700;letter-spacing:.02em;line-height:1.3;margin-bottom:10px}
+.sec-sub{color:var(--ink-soft);max-width:640px;margin-bottom:40px;font-size:1rem}
+section{padding:88px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+/* ============ 顶部导航 ============ */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(250,248,245,.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.06rem;letter-spacing:.04em}
+.brand svg{flex:none}
+.brand small{display:block;font-size:.68rem;color:var(--ink-soft);font-weight:500;letter-spacing:.22em}
+nav.mainnav{display:flex;gap:4px;flex-wrap:wrap}
+nav.mainnav a{
+  font-size:.9rem;padding:7px 13px;border-radius:999px;color:var(--ink-soft);
+  transition:all .25s;
+}
+nav.mainnav a:hover{color:var(--crimson);background:var(--crimson-soft)}
+@media(max-width:900px){nav.mainnav{display:none}}
+
+/* ============ Hero ============ */
+.hero{
+  padding:150px 0 90px;
+  background:
+    radial-gradient(1000px 500px at 85% -10%, rgba(179,56,46,.10), transparent 60%),
+    radial-gradient(700px 400px at -5% 110%, rgba(74,124,89,.08), transparent 60%);
+  border-bottom:1px solid var(--line);
+}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:40px}}
+.hero h1{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.22;font-weight:700;letter-spacing:.01em;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--crimson)}
+.hero p.lead{color:var(--ink-soft);font-size:1.06rem;max-width:56ch;margin-bottom:30px}
+.hero .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:999px;font-weight:600;font-size:.98rem;
+  transition:transform .2s,box-shadow .2s;
+}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--crimson);color:#fff;box-shadow:0 8px 20px rgba(179,56,46,.28)}
+.btn-primary:hover{background:var(--crimson-deep)}
+.btn-ghost{border:1.5px solid var(--line);color:var(--ink);background:#fff}
+.btn-ghost:hover{border-color:var(--crimson);color:var(--crimson)}
+/* 医生名片 */
+.doc-card{padding:34px 32px;position:relative;overflow:hidden}
+.doc-card::before{
+  content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle, rgba(179,56,46,.08), transparent 70%);
+}
+.doc-avatar{
+  width:76px;height:76px;border-radius:50%;
+  background:linear-gradient(135deg,var(--crimson),var(--crimson-deep));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;font-weight:700;letter-spacing:.1em;margin-bottom:18px;
+  box-shadow:0 10px 24px rgba(140,38,32,.3);
+}
+.doc-card h3{font-size:1.4rem;margin-bottom:2px}
+.doc-card .doc-title{color:var(--crimson);font-weight:600;font-size:.95rem;margin-bottom:14px}
+.doc-card ul{list-style:none;display:grid;gap:8px}
+.doc-card ul li{display:flex;gap:10px;font-size:.94rem;color:var(--ink-soft)}
+.doc-card ul li::before{content:"—";color:var(--crimson);font-weight:700}
+/* 数据条 */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;text-align:center}
+.stat b{display:block;font-size:1.75rem;color:var(--crimson);font-weight:700;letter-spacing:.02em}
+.stat span{font-size:.85rem;color:var(--ink-soft)}
+
+/* ============ 疾病科普 ============ */
+#diseases{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dis-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.dis-tab{
+  padding:10px 22px;border-radius:999px;border:1.5px solid var(--line);
+  background:#fff;cursor:pointer;font-size:.95rem;font-weight:600;color:var(--ink-soft);
+  transition:all .25s;user-select:none;
+}
+.dis-tab:hover{border-color:var(--crimson);color:var(--crimson)}
+.dis-tab.active{background:var(--crimson);border-color:var(--crimson);color:#fff}
+.dis-panel{display:none;animation:fadeUp .5s ease both}
+.dis-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.dis-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:900px){.dis-grid{grid-template-columns:1fr}}
+.dis-block{padding:26px 26px 22px}
+.dis-block h4{
+  display:flex;align-items:center;gap:10px;font-size:1.06rem;margin-bottom:12px;color:var(--crimson-deep);
+}
+.dis-block h4 .ic{width:34px;height:34px;flex:none;border-radius:10px;background:var(--crimson-soft);display:flex;align-items:center;justify-content:center;color:var(--crimson)}
+.dis-block p{font-size:.94rem;color:var(--ink-soft);margin-bottom:8px}
+.dis-block ul{margin:8px 0 0 0;padding-left:0;list-style:none}
+.dis-block ul li{font-size:.93rem;color:var(--ink-soft);padding-left:18px;position:relative;margin-bottom:6px}
+.dis-block ul li::before{content:"·";position:absolute;left:4px;color:var(--crimson);font-weight:900}
+.tagline{
+  margin-top:24px;padding:16px 22px;border-radius:14px;
+  background:var(--crimson-soft);color:var(--crimson-deep);
+  font-size:.95rem;display:flex;gap:12px;align-items:flex-start;
+}
+.tagline b{flex:none}
+/* 警示条 */
+.alert{
+  margin-top:18px;padding:16px 20px;border-radius:14px;border:1.5px solid rgba(166,50,38,.35);
+  background:#fdf3f1;color:var(--red-flag);font-size:.93rem;
+}
+.alert b{display:block;margin-bottom:4px}
+
+/* ============ 预防保健 ============ */
+.prev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:1000px){.prev-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.prev-grid{grid-template-columns:1fr}}
+.prev-card{padding:26px}
+.prev-card .ic{width:44px;height:44px;border-radius:12px;background:var(--crimson-soft);color:var(--crimson);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.prev-card h4{font-size:1.05rem;margin-bottom:10px}
+.prev-card ul{list-style:none}
+.prev-card ul li{font-size:.92rem;color:var(--ink-soft);padding:5px 0 5px 16px;position:relative}
+.prev-card ul li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--crimson)}
+/* 指标表 */
+table.target{width:100%;border-collapse:collapse;margin-top:30px;font-size:.94rem;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+table.target th{background:var(--crimson);color:#fff;padding:13px 16px;text-align:left;font-weight:600;white-space:nowrap}
+table.target td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft)}
+table.target tr:last-child td{border-bottom:none}
+table.target td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+.scrollx{overflow-x:auto;border-radius:var(--radius)}
+
+/* ============ 饮食营养 ============ */
+#diet{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.diet-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:26px;margin-bottom:36px}
+@media(max-width:900px){.diet-hero{grid-template-columns:1fr}}
+.diet-num{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.diet-num .num{padding:22px 16px;text-align:center}
+.diet-num b{display:block;font-size:2rem;color:var(--crimson);font-weight:700}
+.diet-num small{color:var(--ink-soft);font-size:.85rem}
+.diet-num p{font-size:.8rem;color:var(--ink-soft);margin-top:6px;line-height:1.5}
+.light-table{display:grid;gap:14px}
+.lt{padding:20px 22px}
+.lt h5{font-size:.98rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.lt h5 .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.lt-green .dot{background:var(--green)}
+.lt-amber .dot{background:var(--amber)}
+.lt-red .dot{background:var(--red-flag)}
+.lt p{font-size:.92rem;color:var(--ink-soft)}
+/* 盐油估一估 计算器 */
+.calc{margin-top:40px;padding:30px}
+.calc h3{font-size:1.25rem;margin-bottom:6px}
+.calc .sub{color:var(--ink-soft);font-size:.92rem;margin-bottom:22px}
+.calc .row{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:720px){.calc .row{grid-template-columns:1fr}}
+.calc label{display:block;font-size:.9rem;font-weight:600;margin-bottom:8px}
+.calc select{
+  width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;
+  background:#fff;font-size:.95rem;font-family:inherit;color:var(--ink);
+}
+.calc button{
+  margin-top:22px;width:100%;padding:13px;border:none;border-radius:12px;
+  background:var(--crimson);color:#fff;font-size:1rem;font-weight:600;cursor:pointer;
+  font-family:inherit;transition:background .2s;
+}
+.calc button:hover{background:var(--crimson-deep)}
+.calc button:active{transform:scale(.99)}
+.calc-result{margin-top:20px;padding:18px 20px;border-radius:14px;font-size:.95rem;display:none}
+.calc-result.ok{background:#eef4ef;color:var(--green);display:block}
+.calc-result.warn{background:#fbf3e6;color:var(--amber);display:block}
+.calc-result.bad{background:#fdf0ee;color:var(--red-flag);display:block}
+
+/* ============ 护心厨房 ============ */
+.kitchen-intro{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:44px;
+}
+@media(max-width:1000px){.kitchen-intro{grid-template-columns:repeat(2,1fr)}}
+.cook-way{padding:22px;text-align:center}
+.cook-way .ic{width:46px;height:46px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.cook-way.good .ic{background:#eef4ef;color:var(--green)}
+.cook-way.bad .ic{background:#fdf0ee;color:var(--red-flag)}
+.cook-way h4{font-size:1rem;margin-bottom:6px}
+.cook-way p{font-size:.84rem;color:var(--ink-soft)}
+/* 食谱 */
+.recipe-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.rf{
+  padding:8px 20px;border-radius:999px;border:1.5px solid var(--line);background:#fff;
+  cursor:pointer;font-size:.88rem;font-weight:600;color:var(--ink-soft);transition:all .25s;user-select:none;font-family:inherit;
+}
+.rf:hover{border-color:var(--crimson);color:var(--crimson)}
+.rf.active{background:var(--crimson);border-color:var(--crimson);color:#fff}
+.recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:1000px){.recipes{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.recipes{grid-template-columns:1fr}}
+.recipe{padding:24px;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.recipe:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(60,30,25,.12)}
+.recipe .r-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.recipe h4{font-size:1.08rem;line-height:1.4}
+.recipe .r-badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+.badge{font-size:.72rem;padding:3px 10px;border-radius:999px;font-weight:600;letter-spacing:.02em}
+.badge.b1{background:var(--crimson-soft);color:var(--crimson)}
+.badge.b2{background:#eef4ef;color:var(--green)}
+.badge.b3{background:#fbf3e6;color:var(--amber)}
+.recipe p.desc{font-size:.88rem;color:var(--ink-soft);margin-bottom:10px}
+.recipe .r-sec{font-size:.82rem;color:var(--crimson-deep);font-weight:700;margin:8px 0 4px;letter-spacing:.05em}
+.recipe .r-sec span{color:var(--ink)}
+.recipe .note{font-size:.83rem;color:var(--green);margin-top:auto;padding-top:12px;border-top:1px dashed var(--line)}
+/* 调味技巧 */
+.season-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px}
+@media(max-width:900px){.season-grid{grid-template-columns:1fr}}
+.season{padding:24px}
+.season h4{margin-bottom:12px;display:flex;gap:10px;align-items:center}
+.season h4 .n{width:28px;height:28px;flex:none;border-radius:50%;background:var(--crimson);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700}
+.season ol{padding-left:20px}
+.season ol li{font-size:.92rem;color:var(--ink-soft);margin-bottom:6px}
+/* 外食建议 */
+.eatout{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+@media(max-width:900px){.eatout{grid-template-columns:1fr}}
+.eo{padding:22px}
+.eo h4{font-size:1rem;margin-bottom:8px;color:var(--crimson-deep)}
+.eo ul{list-style:none}
+.eo ul li{font-size:.9rem;color:var(--ink-soft);padding:4px 0 4px 16px;position:relative}
+.eo ul li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+
+/* ============ 运动 ============ */
+#sport{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sport-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:26px}
+@media(max-width:900px){.sport-grid{grid-template-columns:1fr}}
+.sport-list{list-style:none;display:grid;gap:12px}
+.sport-list li{
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  font-size:.93rem;color:var(--ink-soft);display:flex;gap:12px;align-items:flex-start;
+}
+.sport-list li b{color:var(--ink);display:block;font-size:.97rem}
+.sport-list li .ic{flex:none;width:34px;height:34px;border-radius:10px;background:var(--crimson-soft);color:var(--crimson);display:flex;align-items:center;justify-content:center;margin-top:2px}
+.sport-talk{padding:28px}
+.sport-talk h3{margin-bottom:14px;font-size:1.2rem}
+.sport-talk .lvl{padding:14px 16px;border-radius:12px;margin-bottom:10px;font-size:.92rem}
+.sport-talk .lvl b{display:block;margin-bottom:2px}
+.lvl.good{background:#eef4ef;color:var(--green)}
+.lvl.mid{background:#fbf3e6;color:var(--amber)}
+.lvl.bad{background:#fdf0ee;color:var(--red-flag)}
+
+/* ============ FAQ ============ */
+.faq{max-width:820px;margin:0 auto}
+.faq-item{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:14px;overflow:hidden;transition:box-shadow .25s}
+.faq-item[open]{box-shadow:var(--shadow)}
+.faq-item summary{
+  list-style:none;cursor:pointer;padding:18px 22px;font-weight:600;font-size:1rem;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;user-select:none;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:1.4rem;color:var(--crimson);font-weight:400;transition:transform .25s;flex:none}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item .faq-body{padding:0 22px 20px;color:var(--ink-soft);font-size:.94rem}
+
+/* ============ 页脚 ============ */
+footer{background:var(--ink);color:#cfc9c2;padding:56px 0 34px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+@media(max-width:800px){footer .wrap{grid-template-columns:1fr}}
+footer h4{color:#fff;font-size:1.05rem;margin-bottom:14px}
+footer p,footer li{font-size:.9rem;line-height:1.9}
+footer ul{list-style:none}
+.disclaimer{
+  margin-top:44px;padding:22px 26px;border:1px solid rgba(255,255,255,.15);border-radius:14px;
+  background:rgba(255,255,255,.05);font-size:.86rem;line-height:1.9;
+}
+.copy{margin-top:28px;text-align:center;font-size:.82rem;color:#8d8880;border-top:1px solid rgba(255,255,255,.1);padding-top:22px}
+
+/* 回到顶部 */
+#toTop{
+  position:fixed;right:24px;bottom:28px;width:46px;height:46px;border-radius:50%;
+  background:var(--crimson);color:#fff;border:none;cursor:pointer;display:none;
+  align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(179,56,46,.35);
+  transition:opacity .3s;z-index:99;
+}
+#toTop.show{display:flex}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 导航 ================= -->
+<header class="topbar">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z" fill="#b3382e"/><path d="M3.5 12h3l1.5-3 2.5 6 2-4.5 1.5 2.5h4" stroke="#faf8f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <span>孟自力<small>CARDIOLOGY · 心血管健康</small></span>
+    </a>
+    <nav class="mainnav">
+      <a href="#about">关于医生</a>
+      <a href="#diseases">疾病科普</a>
+      <a href="#prevent">预防保健</a>
+      <a href="#diet">饮食营养</a>
+      <a href="#kitchen">护心厨房</a>
+      <a href="#sport">科学运动</a>
+      <a href="#faq">常见问答</a>
+      <a href="blog/">博客</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">主任医师 · 心血管病专家</span>
+      <h1>用心守护<br>每一次<em>心跳</em></h1>
+      <p class="lead">大家好，我是孟自力。这里是我的心血管健康科普平台——把诊室里被反复问到的关于<strong>卵圆孔未闭（PFO）、心脏瓣膜病、冠心病、先天性心脏病、大血管疾病</strong>的问题，以及<strong>预防、饮食、烹饪与运动</strong>的实用知识，用大众都能读懂的方式讲清楚。</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#diseases">开始了解心血管疾病</a>
+        <a class="btn btn-ghost" href="#kitchen">直达护心食谱</a>
+      </div>
+    </div>
+    <div class="doc-card card" id="about">
+      <div class="doc-avatar">孟</div>
+      <h3>孟自力</h3>
+      <div class="doc-title">心血管病专家 · 主任医师</div>
+      <ul>
+        <li>长期从事心血管疾病临床诊疗工作，擅长常见及疑难心血管疾病的诊断与治疗</li>
+        <li>专注领域：卵圆孔未闭（PFO）相关卒中与偏头痛、心脏瓣膜病、冠心病、先天性心脏病、主动脉及大血管疾病</li>
+        <li>坚持临床与科普并重，致力于把专业医学知识转化为大众听得懂、用得上的健康行动</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>3.3亿</b><span>我国心血管病患病人数（约）</span></div>
+      <div class="stat"><b>1/4</b><span>居民死亡归因于心血管病*</span></div>
+      <div class="stat"><b>80%</b><span>的心血管病可通过健康生活方式预防</span></div>
+      <div class="stat"><b>5g/日</b><span>推荐食盐摄入上限（约一啤酒瓶盖）</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 疾病科普 ================= -->
+<section id="diseases">
+  <div class="wrap">
+    <span class="eyebrow">Disease Guide · 诊疗科普</span>
+    <h2 class="sec-title">五大疾病板块，读懂心血管</h2>
+    <p class="sec-sub">以下内容面向大众撰写，帮助您了解疾病"是什么、有什么表现、怎么查、怎么治、何时必须就医"。具体诊疗方案请务必以主诊医生的当面评估为准。</p>
+
+    <div class="dis-tabs" role="tablist">
+      <button class="dis-tab active" data-panel="p1">卵圆孔未闭 PFO</button>
+      <button class="dis-tab" data-panel="p2">心脏瓣膜病</button>
+      <button class="dis-tab" data-panel="p3">冠心病</button>
+      <button class="dis-tab" data-panel="p4">先天性心脏病</button>
+      <button class="dis-tab" data-panel="p5">大血管疾病</button>
+    </div>
+
+    <!-- PFO -->
+    <div class="dis-panel active" id="p1">
+      <div class="dis-grid">
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></span>什么是卵圆孔未闭（PFO）？</h4>
+          <p>卵圆孔是胎儿时期心脏房间隔上的一个"小通道"，让血液绕过尚未工作的肺脏。绝大多数人出生后一年内会自然闭合；约四分之一的成年人未能完全闭合，遗留一个潜在通道，这就是<strong>卵圆孔未闭</strong>。</p>
+          <p>它本身在多数人身上并不引起症状，但可能成为血液中"小血栓"或某些化学物质绕过肺脏过滤、直接进入脑部的"后门"，与<strong>不明原因脑卒中、短暂性脑缺血发作（TIA）以及部分偏头痛</strong>存在关联。</p>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>常见表现与关联疾病</h4>
+          <ul>
+            <li>多数人终身无症状，体检偶然发现</li>
+            <li>不明原因的缺血性脑卒中或 TIA（尤其年龄较轻者）</li>
+            <li>先兆偏头痛（伴视觉先兆者关联更明显）</li>
+            <li>潜水员等特殊人群的减压病风险增加</li>
+            <li>体位性低氧血症（罕见，如斜卧呼吸-直立性低氧综合征）</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6l-4 7a4 4 0 0 0 3.5 6h7A4 4 0 0 0 19 16l-4-7V3"/><path d="M8 3h8"/></svg></span>如何诊断？</h4>
+          <ul>
+            <li><strong>经胸超声心动图</strong>：常规筛查的第一步，结合右心声学造影（发泡试验）</li>
+            <li><strong>经食道超声心动图</strong>：显示卵圆孔形态、大小的"金标准"之一</li>
+            <li>对比经颅多普勒（c-TCD）发泡试验：评估右向左分流的存在与程度</li>
+            <li>诊断需在经验中心完成，并结合卒中病因进行全面评估（排除其他原因）</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg></span>如何治疗？</h4>
+          <ul>
+            <li><strong>无症状的偶然发现</strong>：一般无需特殊处理，定期随访即可</li>
+            <li><strong>合并不明原因卒中/TIA</strong>：由心内科与神经科医生共同评估，符合指征者可考虑<strong>经导管卵圆孔封堵术</strong>——微创介入，经静脉送入封堵器，无需开胸</li>
+            <li>封堵术后需遵医嘱服用抗栓药物一段时间，并定期复查超声</li>
+            <li>药物治疗（如抗血小板）方案由医生根据个体情况制定</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tagline"><b>大众须知：</b>体检查出 PFO 不必恐慌——约每 4 个成年人就有 1 个存在 PFO，绝大多数终生相安无事。需要重点关注的是<strong>不明原因的年轻卒中、频繁先兆偏头痛</strong>人群，建议到心血管专科做系统评估，切勿自行长期服用阿司匹林等药物。</div>
+      <div class="alert"><b>立即就医的信号</b>突发一侧肢体无力或麻木、口角歪斜、言语不清、视物成双、剧烈头痛、突发眩晕伴走路不稳——这些是脑卒中征象，请立即拨打 120，记录发病时间。</div>
+    </div>
+
+    <!-- 瓣膜病 -->
+    <div class="dis-panel" id="p2">
+      <div class="dis-grid">
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg></span>什么是心脏瓣膜病？</h4>
+          <p>心脏里有四扇"单向阀门"（二尖瓣、三尖瓣、主动脉瓣、肺动脉瓣），保证血液朝一个方向流动。当阀门出现<strong>狭窄</strong>（打不开）或<strong>关闭不全</strong>（关不拢）时，心脏做功增加，久之可致心脏扩大、心律失常和心力衰竭。</p>
+          <p>常见原因包括：<strong>老年退行性钙化</strong>（主动脉瓣狭窄最常见原因）、风湿性心脏病（风湿热后遗症）、感染性心内膜炎、先天性瓣膜畸形（如二叶式主动脉瓣）以及黏液样变性导致的二尖瓣脱垂等。</p>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>常见表现</h4>
+          <ul>
+            <li>活动后气短、乏力、耐力明显下降（最早、最常见的信号）</li>
+            <li>胸闷、胸痛、心悸，夜间不能平卧或睡梦中憋醒</li>
+            <li>下肢水肿、腹胀、食欲下降（右心受累表现）</li>
+            <li>心脏杂音——很多瓣膜病最早由听诊器发现</li>
+            <li>重度主动脉瓣狭窄可出现晕厥、心绞痛甚至猝死</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6l-4 7a4 4 0 0 0 3.5 6h7A4 4 0 0 0 19 16l-4-7V3"/><path d="M8 3h8"/></svg></span>如何诊断与随访？</h4>
+          <ul>
+            <li><strong>超声心动图</strong>是首选检查：明确瓣膜形态、狭窄/反流程度、心脏大小与功能</li>
+            <li>心电图、胸片提供辅助信息；必要时行经食道超声、运动试验或心脏磁共振</li>
+            <li>轻中度病变可能多年稳定，需<strong>每 6–12 个月复查超声</strong></li>
+            <li>建议同时管理血压、治疗龋齿等感染灶；拔牙等操作前告知牙医瓣膜病史</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg></span>治疗方式</h4>
+          <ul>
+            <li><strong>药物治疗</strong>：控制血压、心率、心衰症状，预防血栓与感染性心内膜炎——药物不能"修复"瓣膜，但能延缓病情</li>
+            <li><strong>外科手术</strong>：瓣膜修复或置换（机械瓣/生物瓣），适合病变复杂的患者</li>
+            <li><strong>经导管介入</strong>：如经导管主动脉瓣置换术（TAVR/TAVI）、经导管二尖瓣缘对缘修复（MitraClip），为高龄、不能耐受开胸的患者提供微创选择</li>
+            <li>是否手术、何时手术由心脏团队评估，"等出现严重症状才治"常常已贻误最佳时机</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tagline"><b>大众须知：</b>听到"心脏有杂音"不必惊慌，但<strong>不要止步于"有杂音"三个字</strong>——请做一次超声心动图明确原因。确诊瓣膜病后最忌讳两件事：一是拖延复查，二是自行停用医生开具的药物。</div>
+      <div class="alert"><b>立即就医的信号</b>新发或加重的夜间憋醒、平卧气短、不明原因发热伴心脏杂音（警惕感染性心内膜炎）、突发剧烈胸痛或晕厥。</div>
+    </div>
+
+    <!-- 冠心病 -->
+    <div class="dis-panel" id="p3">
+      <div class="dis-grid">
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg></span>什么是冠心病？</h4>
+          <p>冠状动脉是为心脏自身供血的血管。当它发生<strong>动脉粥样硬化、管腔狭窄</strong>，心肌供氧不足时，即为冠状动脉粥样硬化性心脏病，简称冠心病。危险因素包括高血压、血脂异常、糖尿病、吸烟、肥胖、早发冠心病家族史、年龄增长及长期精神紧张等。</p>
+          <p>主要类型：稳定型心绞痛、急性冠脉综合征（不稳定型心绞痛、急性心肌梗死）、无症状性心肌缺血、缺血性心肌病。</p>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>心绞痛长什么样？</h4>
+          <ul>
+            <li>典型表现：胸骨后或心前区<strong>压榨感、紧缩感、闷胀感</strong>，如"压了块石头"</li>
+            <li>范围约手掌大小，界限不清，可放射至左肩、左臂内侧、下颌、后背</li>
+            <li>稳定型心绞痛多由体力活动、情绪激动、饱餐、寒冷诱发，休息或含服硝酸甘油后数分钟缓解</li>
+            <li><strong>警示升级</strong>：静息状态下也发作、发作更频繁、持续超过 15–20 分钟、伴大汗与濒死感——可能是心肌梗死，立即拨打 120</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6l-4 7a4 4 0 0 0 3.5 6h7A4 4 0 0 0 19 16l-4-7V3"/><path d="M8 3h8"/></svg></span>如何诊断？</h4>
+          <ul>
+            <li>心电图（含发作时心电图、动态心电图、运动负荷试验）</li>
+            <li>心肌损伤标志物（肌钙蛋白）——判断有无心肌坏死</li>
+            <li>无创影像：冠脉 CT 血管成像（CTA）适合中度可疑者的筛查</li>
+            <li><strong>冠状动脉造影</strong>：诊断的"金标准"，同时可衔接支架治疗</li>
+            <li>注意：女性、老年人、糖尿病患者的症状常不典型（仅气短、乏力、上腹不适），需提高警惕</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg></span>治疗三部曲</h4>
+          <ul>
+            <li><strong>生活方式治疗</strong>：戒烟、控体重、每周规律运动、心理调适——一切治疗的基石</li>
+            <li><strong>药物治疗</strong>：抗血小板、他汀、控制血压血糖的药物等；急性心梗"时间就是心肌"，越早开通血管，保住的心肌越多</li>
+            <li><strong>血运重建</strong>：经皮冠状动脉介入治疗（支架）或冠状动脉旁路移植术（搭桥），由心脏团队评估选择</li>
+            <li>支架/搭桥不等于"治愈"，术后必须坚持服药与二级预防，定期复查</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tagline"><b>大众须知：</b>硝酸甘油应<strong>坐着含服</strong>，症状不缓解每 5 分钟可重复一次，最多 3 次；切勿 walking 自行驾车或乘公交去医院。胸痛消失不等于没问题——请务必留观、完善检查。</div>
+      <div class="alert"><b>立即拨打 120 的信号</b>持续胸痛超过 15 分钟不缓解、伴大汗淋漓/面色苍白/濒死感、突发严重气短无法平卧、不明原因晕厥。记住：急性心梗救治的黄金时间是发病后 120 分钟内。</div>
+    </div>
+
+    <!-- 先心病 -->
+    <div class="dis-panel" id="p4">
+      <div class="dis-grid">
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2"/></svg></span>什么是先天性心脏病？</h4>
+          <p>先心病是胎儿期心脏及大血管发育异常所致的结构畸形，是最常见的出生缺陷之一。常见类型包括<strong>房间隔缺损（ASD）、室间隔缺损（VSD）、动脉导管未闭（PDA）、肺动脉瓣狭窄</strong>，以及法洛四联症等复杂畸形。</p>
+          <p>病因多为遗传与环境因素共同作用：孕早期风疹等病毒感染、接触放射线、某些药物、酗酒吸烟、糖尿病控制不佳等均可能增加风险。</p>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>孩子有哪些信号？</h4>
+          <ul>
+            <li>吃奶费力、吃吃停停、大量出汗，体重增长缓慢</li>
+            <li>反复呼吸道感染、肺炎，哭闹或活动后口唇发绀（青紫）</li>
+            <li>大孩子可表现为耐力差、蹲踞现象（法洛四联症典型表现）、活动后气促</li>
+            <li>部分小缺损完全没有症状，仅在体检时听到杂音被发现</li>
+            <li>成人也可发现"漏网"的先心病（如房缺、PFO），表现为气短、心律失常</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6l-4 7a4 4 0 0 0 3.5 6h7A4 4 0 0 0 19 16l-4-7V3"/><path d="M8 3h8"/></svg></span>筛查与诊断</h4>
+          <ul>
+            <li>胎儿心脏超声：孕期排查的重要手段</li>
+            <li>新生儿脉氧筛查：简便易行，可早期发现危重先心病</li>
+            <li>小儿心脏超声是核心检查；必要时心脏 CT、磁共振、心导管检查</li>
+            <li>建议到<strong>具备先心病诊疗经验的中心</strong>完成评估</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg></span>治疗与预后</h4>
+          <ul>
+            <li><strong>部分小缺损可自愈</strong>（如小的室缺、房缺），定期随访即可</li>
+            <li><strong>介入封堵</strong>：多数房缺、动脉导管未闭、部分室缺可经导管微创封堵，不留刀口</li>
+            <li><strong>外科手术</strong>：复杂畸形需开胸矫治，部分需分期手术</li>
+            <li>绝大多数简单先心病<strong>及时治疗后可正常生长发育、正常上学工作</strong>，女性患者多数可安全妊娠（需孕前评估）</li>
+            <li>治疗后仍需终身随访，注意感染性心内膜炎预防</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tagline"><b>大众须知：</b>"孩子心脏有杂音"约一半是功能性无害杂音，但<strong>杂音 + 生长发育落后/反复肺炎/口唇发绀</strong>必须尽快做心脏超声。切勿轻信"先心病孩子养不大"的说法而放弃——今天的先心病总体治疗效果已经非常好。</div>
+      <div class="alert"><b>立即就医的信号</b>婴儿出现喂养困难伴大汗、呼吸急促；任何年龄突发口唇青紫、呼吸困难、晕厥。</div>
+    </div>
+
+    <!-- 大血管 -->
+    <div class="dis-panel" id="p5">
+      <div class="dis-grid">
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v6c0 2 1.5 3 3 3s3-1 3-3 1.5-3 3-3 3 1 3 3v6"/></svg></span>什么是大血管疾病？</h4>
+          <p>大血管疾病指主动脉及其主要分支的病变，最凶险的两类是：</p>
+          <ul>
+            <li><strong>主动脉夹层</strong>：血管内膜撕裂，血液冲入血管壁中层并将其"劈开"形成真假两腔，随时可能破裂，是心血管领域最凶险的急症之一</li>
+            <li><strong>主动脉瘤</strong>：主动脉某段像气球一样扩张，超过正常管径的 1.5 倍称为动脉瘤，破裂风险随直径增大而升高</li>
+          </ul>
+          <p>头号危险因素是<strong>长期未控制的高血压</strong>，其次为吸烟、高血脂、马凡综合征等遗传性结缔组织病、主动脉瓣二叶式畸形、外伤等。</p>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>警惕"撕裂样"胸背痛</h4>
+          <ul>
+            <li>典型主动脉夹层：<strong>突发剧烈、撕裂样、刀割样疼痛</strong>，位于胸背部，可向腹部或下肢迁移</li>
+            <li>可伴血压两侧不对称（两臂血压差 &gt;20 mmHg）、肢体发凉、无脉</li>
+            <li>部分患者以晕厥、卒中、腹痛、少尿起病</li>
+            <li>主动脉瘤常无症状，多于体检超声/CT 偶然发现；巨大瘤体可有搏动性包块或压迫症状</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6l-4 7a4 4 0 0 0 3.5 6h7A4 4 0 0 0 19 16l-4-7V3"/><path d="M8 3h8"/></svg></span>检查手段</h4>
+          <ul>
+            <li><strong>主动脉 CTA</strong>：急诊首选，快速准确显示夹层范围与真假腔</li>
+            <li>经食道超声、磁共振（MRA）用于特定情形</li>
+            <li>胸片可见纵隔增宽，但正常不能排除夹层</li>
+            <li>高血压人群建议体检时关注心脏超声中"升主动脉内径"数据</li>
+            <li>马凡综合征等高危人群应进行系统的心血管影像随访</li>
+          </ul>
+        </div>
+        <div class="card dis-block">
+          <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg></span>治疗原则</h4>
+          <ul>
+            <li>急性 A 型夹层：<strong>急诊外科手术</strong>，分秒必争，需转诊有主动脉外科能力的中心</li>
+            <li>B 型夹层：多数可行<strong>胸主动脉腔内修复（TEVAR）</strong>微创支架治疗</li>
+            <li>主动脉瘤：达手术指征者择期行腔内支架或人工血管置换；未达指征者<strong>严格控制血压、定期影像随访</strong></li>
+            <li>长期管理核心：血压达标（遵医嘱，常需 β 受体阻滞剂等）、戒烟、避免憋气发力与重体力活动</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tagline"><b>大众须知：</b>高血压患者请把今天的降压药吃上——夹层抢救室里的患者，追问病史常有多年"血压高但没感觉就不吃药"。同时提醒：明确夹层/动脉瘤家族史或身材高瘦、四肢细长、高度近视者，建议排查马凡综合征等遗传疾病。</div>
+      <div class="alert"><b>立即拨打 120 的信号</b>突发胸背部撕裂样剧痛、疼痛向腹部或下肢蔓延、两侧上肢血压或脉搏明显不对称、伴晕厥或肢体麻木无力。此病死亡率以小时计，请绝对静卧、保持镇定，由救护车转运。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 预防保健 ================= -->
+<section id="prevent">
+  <div class="wrap">
+    <span class="eyebrow">Prevention · 预防保健</span>
+    <h2 class="sec-title">心血管疾病，防大于治</h2>
+    <p class="sec-sub">绝大多数心血管疾病的危险因素是"可防可控"的。做好以下六件事，就是在给自己的血管"延寿"。</p>
+    <div class="prev-grid">
+      <div class="card prev-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div>
+        <h4>管好"三高"</h4>
+        <ul>
+          <li>高血压：遵医嘱规律服药，家庭自测血压，目标一般 &lt;140/90 mmHg（个体化）</li>
+          <li>血脂：关注低密度脂蛋白胆固醇（LDL-C），不同风险人群目标值不同</li>
+          <li>糖尿病：控制血糖同时重视血压血脂，"三高共管"</li>
+          <li>切勿凭感觉加减药、停药</li>
+        </ul>
+      </div>
+      <div class="card prev-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+        <h4>戒烟、限酒</h4>
+        <ul>
+          <li>吸烟使心血管病风险升高 2–4 倍，戒烟 1 年后风险即显著下降</li>
+          <li>戒烟何时开始都不晚，必要时寻求戒烟门诊帮助</li>
+          <li>不存在"适量饮酒有益心脏"的科学依据，最佳饮酒量为零</li>
+          <li>远离二手烟，家中尤其是有孩子的地方保持无烟</li>
+        </ul>
+      </div>
+      <div class="card prev-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h4>规律作息与睡眠</h4>
+        <ul>
+          <li>成年人建议每晚 7–9 小时睡眠</li>
+          <li>长期熬夜、打鼾伴白天嗜睡者需筛查睡眠呼吸暂停</li>
+          <li>睡眠呼吸暂停是高血压、房颤、心衰的推手之一</li>
+          <li>午休 20–30 分钟为宜，避免饭后立即平卧</li>
+        </ul>
+      </div>
+      <div class="card prev-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg></div>
+        <h4>管理情绪与压力</h4>
+        <ul>
+          <li>长期精神紧张使血压、心率持续升高</li>
+          <li>急性情绪应激可诱发"心碎综合征"与急性心血管事件</li>
+          <li>培养倾诉、正念呼吸、兴趣爱好等解压渠道</li>
+          <li>持续情绪低落、失眠超过两周，及时寻求心理帮助</li>
+        </ul>
+      </div>
+      <div class="card prev-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h4>控制体重</h4>
+        <ul>
+          <li>体质指数（BMI）建议保持在 18.5–23.9 kg/m²</li>
+          <li>男性腰围 &lt;90 cm、女性 &lt;85 cm——腰围比体重更能反映内脏脂肪</li>
+          <li>减重 5%–10% 即可显著改善血压血脂血糖</li>
+          <li>避免极端节食与药物减肥，每月减 1–2 kg 为宜</li>
+        </ul>
+      </div>
+      <div class="card prev-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v6l-4 7a4 4 0 0 0 3.5 6h7A4 4 0 0 0 19 16l-4-7V3"/><path d="M8 3h8"/></svg></div>
+        <h4>定期体检</h4>
+        <ul>
+          <li>每年至少测一次血压、血脂、血糖</li>
+          <li>40 岁以上或有三高、家族史者酌情做心电图、心脏超声</li>
+          <li>体检报告请交给医生解读，勿自行"对号入座"</li>
+          <li>关注父母、兄弟姐妹中的早发心血管病史（男 &lt;55 岁、女 &lt;65 岁）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scrollx">
+      <table class="target">
+        <thead><tr><th>指标</th><th>理想目标（一般人群）</th><th>备注</th></tr></thead>
+        <tbody>
+          <tr><td>血压</td><td>&lt;120/80 mmHg</td><td>诊室血压 ≥140/90 需就医评估；家庭自测 ≥135/85 提示升高</td></tr>
+          <tr><td>LDL-C（坏胆固醇）</td><td>&lt;2.6 mmol/L（低风险人群）</td><td>已患病或高危人群目标更严格（如 &lt;1.8），遵医嘱</td></tr>
+          <tr><td>空腹血糖</td><td>3.9–6.1 mmol/L</td><td>6.1–7.0 为空腹血糖受损，需复查 + 糖耐量试验</td></tr>
+          <tr><td>体质指数 BMI</td><td>18.5–23.9 kg/m²</td><td>= 体重(kg) ÷ 身高(m)²</td></tr>
+          <tr><td>腰围</td><td>男 &lt;90 cm，女 &lt;85 cm</td><td>晨起空腹、脐上水平测量</td></tr>
+          <tr><td>静息心率</td><td>60–100 次/分</td><td>长期规律运动者可低于 60；伴不适请就医</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 饮食营养 ================= -->
+<section id="diet">
+  <div class="wrap">
+    <span class="eyebrow">Nutrition · 饮食营养</span>
+    <h2 class="sec-title">吃对了，血管年轻十岁</h2>
+    <p class="sec-sub">国际公认的两大护心膳食模式——<strong>地中海饮食</strong>与<strong>DASH 饮食（防治高血压饮食）</strong>——核心高度一致：多蔬果全谷豆类、优质蛋白、健康油脂，少盐少糖少加工食品。</p>
+
+    <div class="diet-hero">
+      <div class="card" style="padding:28px">
+        <h3 style="margin-bottom:12px">护心饮食每日框架（记忆口诀：一多二足三限）</h3>
+        <ul style="padding-left:20px;color:var(--ink-soft);font-size:.95rem">
+          <li style="margin-bottom:6px"><strong>一多</strong>：多吃蔬菜水果，每天蔬菜约 500g（生重，约两捧）、水果 200–350g（约一个拳头）</li>
+          <li style="margin-bottom:6px"><strong>二足</strong>：全谷物杂豆足量（主食的一半）、优质蛋白足量（鱼禽蛋奶豆换着吃，每周吃鱼 2 次或 300–500g）</li>
+          <li style="margin-bottom:6px"><strong>三限</strong>：限盐（&lt;5g）、限油（25–30g）、限添加糖（&lt;25g，最好 &lt;12.5g）</li>
+          <li style="margin-bottom:6px">每天喝够 1500–1700ml 白水，代替含糖饮料</li>
+          <li>坚果有益但热量高，每天原味一小把（约 10g）即可</li>
+        </ul>
+      </div>
+      <div class="diet-num">
+        <div class="card num"><b>5g</b><small>盐 / 天</small><p>约一啤酒瓶盖平装。包括酱油、蚝油、咸菜、挂面、零食里的"隐形盐"</p></div>
+        <div class="card num"><b>25–30g</b><small>油 / 天</small><p>约 2–3 白瓷勺。优选橄榄油、菜籽油、茶油，换着用</p></div>
+        <div class="card num"><b>&lt;25g</b><small>添加糖 / 天</small><p>一瓶甜饮料就可能超标。警惕果汁、烘焙、酱料中的糖</p></div>
+      </div>
+    </div>
+
+    <div class="light-table">
+      <div class="card lt lt-green">
+        <h5><span class="dot"></span>绿灯区 · 放心常吃</h5>
+        <p>深绿色叶菜（菠菜、油菜、西兰花）、番茄、彩椒、洋葱、菌菇、海带；燕麦、糙米、荞麦、玉米、杂豆；深海鱼（三文鱼、鲈鱼、沙丁鱼）、去皮禽肉、豆腐豆干、鸡蛋、无糖酸奶；苹果、橙子、蓝莓、猕猴桃；核桃、原味坚果；绿茶、白开水。</p>
+      </div>
+      <div class="card lt lt-amber">
+        <h5><span class="dot"></span>黄灯区 · 控量吃</h5>
+        <p>瘦红肉（每周不超过 500g 熟重）、动物内脏（每月 1–2 次）、虾仁蟹肉贝类（高尿酸者注意）、全脂奶制品、精米白面（与粗粮搭配）、土豆山药等淀粉类蔬菜、果汁（不如果肉完整）、料酒与低盐酱料。</p>
+      </div>
+      <div class="card lt lt-red">
+        <h5><span class="dot"></span>红灯区 · 尽量不吃</h5>
+        <p>咸菜、酱菜、腊肉香肠火腿等加工肉制品、油炸食品（炸鸡、油条）、肥肉、动物油、起酥点心与植脂末（含反式脂肪）、含糖饮料与奶茶、糕点糖果、方便面配汤料、火锅蘸料中的沙茶酱韭花酱。</p>
+      </div>
+    </div>
+
+    <!-- 互动小工具 -->
+    <div class="card calc" id="sodiumCalc">
+      <h3>小工具：估一估今天吃了多少"隐形盐"</h3>
+      <p class="sub">选择您今天的实际情况，粗略估算钠摄入。结果仅供参考，用于提高对隐形盐的警觉。</p>
+      <div class="row">
+        <div>
+          <label for="c1">1. 主食情况</label>
+          <select id="c1">
+            <option value="0">在家做，少盐</option>
+            <option value="1">吃了挂面/方便面/速冻食品</option>
+            <option value="2">外卖或餐馆为主</option>
+          </select>
+        </div>
+        <div>
+          <label for="c2">2. 咸味佐餐</label>
+          <select id="c2">
+            <option value="0">基本不吃</option>
+            <option value="1">吃了腐乳/咸菜/榨菜一顿</option>
+            <option value="2">咸菜酱料每餐都有</option>
+          </select>
+        </div>
+        <div>
+          <label for="c3">3. 零食饮料</label>
+          <select id="c3">
+            <option value="0">不吃零食</option>
+            <option value="1">话梅/薯片/饼干/辣条</option>
+            <option value="2">经常吃上述零食</option>
+          </select>
+        </div>
+        <div>
+          <label for="c4">4. 烹饪用盐习惯</label>
+          <select id="c4">
+            <option value="0">放盐较少，多用醋和香料</option>
+            <option value="1">口味正常</option>
+            <option value="2">口味偏重，汤汁也喝掉</option>
+          </select>
+        </div>
+      </div>
+      <button id="calcBtn" type="button">帮我估算</button>
+      <div class="calc-result" id="calcResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 护心厨房 ================= -->
+<section id="kitchen">
+  <div class="wrap">
+    <span class="eyebrow">Heart-Smart Kitchen · 护心厨房</span>
+    <h2 class="sec-title">会做菜，是最好的护心处方</h2>
+    <p class="sec-sub">同样的食材，不同的做法，健康效果天差地别。这一板块讲清楚<strong>怎么选、怎么切、怎么烹、怎么调味</strong>，并附 20 道家常护心食谱，适合三高人群与心血管病患者的日常参考（肾功能不全、痛风等特殊人群请遵医嘱调整）。</p>
+
+    <!-- 烹饪方式 -->
+    <h3 style="font-size:1.25rem;margin-bottom:18px">一、烹饪方式红黑榜</h3>
+    <div class="kitchen-intro">
+      <div class="card cook-way good">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17h16M6 17a6 6 0 0 1 12 0"/><path d="M12 11V7m-2 0h4"/></svg></div>
+        <h4>蒸</h4><p>最推荐。不加或极少加油，保留营养与原味，适合鱼、蛋、薯类、叶菜</p>
+      </div>
+      <div class="card cook-way good">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14M6 8v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M9 5h6"/></svg></div>
+        <h4>煮 / 焯 / 涮</h4><p>水代替油，能去掉叶菜中部分草酸与钾（适合需限钾者焯水处理）</p>
+      </div>
+      <div class="card cook-way good">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div>
+        <h4>炖 / 煲（去油）</h4><p>小火慢炖软烂好消化；<strong>炖好后冷藏，撇去表面凝固白油</strong>再加热吃</p>
+      </div>
+      <div class="card cook-way bad">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c3 4 6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 3-6 6-10z"/></svg></div>
+        <h4>煎 / 炸 / 烤</h4><p>高温油炸产生反式脂肪与有害化合物，能量翻倍；偶用不粘锅少油快煎尚可，明火炭烤尽量避免</p>
+      </div>
+    </div>
+
+    <!-- 食材处理技巧 -->
+    <h3 style="font-size:1.25rem;margin:44px 0 18px">二、食材处理五个小技巧</h3>
+    <div class="season-grid">
+      <div class="card season">
+        <h4><span class="n">1</span>肉去脂，先"冷后热"</h4>
+        <ol>
+          <li>炖肉、煲汤先冷藏，撇除凝固的白色浮油，可减脂 10% 以上</li>
+          <li>禽肉去皮（鸡皮鸭皮脂肪多在皮下），选里脊等瘦部位</li>
+          <li>红烧肉可先焯水逼出部分脂肪，再用少量油煸炒</li>
+          <li>绞肉馅选纯瘦肉自己现绞，市售"肥三瘦七"馅脂肪过高</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">2</span>鱼保鲜，锁住好脂肪</h4>
+        <ol>
+          <li>深海鱼中的欧米伽-3 脂肪酸怕高温，<strong>清蒸 &gt; 烤 &gt; 红烧 &gt; 油炸</strong></li>
+          <li>蒸鱼水开后入锅，大火 8–10 分钟，久蒸营养流失</li>
+          <li>买不到鲜鱼，冷冻鲈鱼、巴沙鱼也是可选蛋白来源</li>
+          <li>每周吃鱼 2 次，其中深海鱼至少 1 次</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">3</span>杂粮好吃，有窍门</h4>
+        <ol>
+          <li>燕麦选<strong>生燕麦片/钢切燕麦</strong>，速溶甜麦片含糖高</li>
+          <li>杂豆提前泡 4 小时或隔夜，加几滴柠檬汁更易软</li>
+          <li>白米:杂粮从 2:1 开始适应，逐渐过渡到 1:1</li>
+          <li>杂粮饭一次多蒸，分装冷冻，吃前蒸热，控糖又方便</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">4</span>绿叶菜，急火快炒</h4>
+        <ol>
+          <li>热锅后少量油，快炒 1–2 分钟出锅，保留维生素与叶酸</li>
+          <li>先洗后切、现切现炒，切后久放营养氧化流失</li>
+          <li>限钾人群（部分肾病患者）：绿叶菜焯水 1 分钟去钾再烹</li>
+          <li>炒菜不重复用油，不用"炝锅老油"</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">5</span>控油有工具</h4>
+        <ol>
+          <li>用<strong>带刻度的限油壶</strong>，全家每天用量一目了然</li>
+          <li>不粘锅、空气炸锅、电蒸锅，是少油烹饪的三件法宝</li>
+          <li>"油刷"刷薄油替代"倒油"，煎蛋饼可省一半油</li>
+          <li>汤面里的"明油"去掉，能量能降不少</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">6</span>隐形盐，这样排雷</h4>
+        <ol>
+          <li>看营养成分表：<strong>钠 &gt; 30% NRV/100g 属于高钠食品</strong>，慎买</li>
+          <li>警惕：挂面、面包、饼干、话梅、肉干、沙拉酱、番茄沙司</li>
+          <li>用了酱油/蚝油/豆瓣酱，就不再额外放盐，按 5ml 酱油 ≈ 1g 盐换算</li>
+          <li>高血压患者可选低钠高钾盐（肾功能异常者先咨询医生）</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 食谱库 -->
+    <h3 style="font-size:1.25rem;margin:48px 0 8px">三、二十道家常护心食谱</h3>
+    <p style="color:var(--ink-soft);font-size:.92rem;margin-bottom:22px">每道菜按 2–3 人份标注。慢病患者请结合自身合并疾病（如糖尿病需计主食量）灵活调整。</p>
+    <div class="recipe-filter">
+      <button class="rf active" data-cat="all">全部</button>
+      <button class="rf" data-cat="c1">主菜 · 鱼禽蛋</button>
+      <button class="rf" data-cat="c2">主食粥品</button>
+      <button class="rf" data-cat="c3">蔬菜豆类</button>
+      <button class="rf" data-cat="c4">汤羹甜品</button>
+    </div>
+    <div class="recipes" id="recipeBox">
+
+      <div class="card recipe" data-cat="c1">
+        <div class="r-head"><h4>清蒸鲈鱼</h4></div>
+        <div class="r-badges"><span class="badge b1">高蛋白</span><span class="badge b2">欧米伽-3</span><span class="badge b3">15分钟</span></div>
+        <p class="desc">护心首选菜。鲈鱼肉嫩刺少，清蒸最大限度保留鱼肉中的不饱和脂肪酸。</p>
+        <div class="r-sec">食材：<span>鲈鱼1条（约500g）、姜、葱、蒸鱼豉油10ml、香油数滴</span></div>
+        <div class="r-sec">做法：<span>鱼身两面划刀，姜片垫底；水开后大火蒸8–10分钟；倒掉盘中腥水，铺葱丝，淋热油激香，沿盘边淋少许蒸鱼豉油即可。</span></div>
+        <div class="note">护心点评：每周吃鱼2次有助于血脂管理。豉油含盐，出锅后再淋、不再额外加盐。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c1">
+        <div class="r-head"><h4>白灼虾</h4></div>
+        <div class="r-badges"><span class="badge b1">高蛋白低脂</span><span class="badge b3">10分钟</span></div>
+        <p class="desc">零油烹饪的代表。鲜虾原汁原味，蛋白质优质、脂肪极低。</p>
+        <div class="r-sec">食材：<span>鲜虾400g、姜3片、料酒1勺、醋+姜末蘸料</span></div>
+        <div class="r-sec">做法：<span>水烧开加姜片料酒，下虾煮至变红弯曲（约2分钟）捞出过凉水；用姜末+香醋做蘸料，代替高盐酱油。</span></div>
+        <div class="note">护心点评：痛风/高尿酸人群急性期避免，缓解期待医生评估后适量。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c1">
+        <div class="r-head"><h4>番茄炒蛋（少油版）</h4></div>
+        <div class="r-badges"><span class="badge b1">番茄红素</span><span class="badge b2">国民家常</span></div>
+        <p class="desc">经典菜的健康改造：少油、不加糖、不重复用油。</p>
+        <div class="r-sec">食材：<span>鸡蛋3个、番茄2个、葱花、盐2g</span></div>
+        <div class="r-sec">做法：<span>不粘锅刷薄油炒散鸡蛋盛出；番茄块下锅炒出汁，回锅鸡蛋翻匀，盐出锅前放。传统做法加糖提鲜，此处省略。</span></div>
+        <div class="note">护心点评：一餐两样好食材——鸡蛋的优质蛋白与番茄的番茄红素（加少量油更利吸收）。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c1">
+        <div class="r-head"><h4>香菇蒸鸡</h4></div>
+        <div class="r-badges"><span class="badge b1">高蛋白</span><span class="badge b3">25分钟</span></div>
+        <p class="desc">鸡肉去皮后脂肪大幅减少，香菇提鲜，整道菜不用一滴炒菜油。</p>
+        <div class="r-sec">食材：<span>鸡腿肉（去皮）400g、干香菇6朵、姜丝、生抽10ml、淀粉少许</span></div>
+        <div class="r-sec">做法：<span>鸡腿去皮切块，与泡发的香菇、姜丝、生抽、少许淀粉拌匀腌15分钟，上锅大火蒸20分钟。</span></div>
+        <div class="note">护心点评：蒸制锁住蛋白质，泡香菇的水滤净泥沙后可入汤增鲜，替代味精。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c1">
+        <div class="r-head"><h4>彩椒炒鸡胸</h4></div>
+        <div class="r-badges"><span class="badge b1">低脂高蛋白</span><span class="badge b2">维C丰富</span></div>
+        <p class="desc">健身人群与减重人群的护心双料菜。</p>
+        <div class="r-sec">食材：<span>鸡胸肉250g、红黄彩椒各半个、蒜、生抽8ml、淀粉5g</span></div>
+        <div class="r-sec">做法：<span>鸡胸切片用生抽淀粉抓匀；不粘锅少油滑炒鸡片至变色盛出；蒜片爆香下彩椒断生，回锅鸡片翻匀出锅。</span></div>
+        <div class="note">护心点评：鸡胸肉是禽肉中脂肪最低的部位，彩椒的维生素C有助于血管内皮健康。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c1">
+        <div class="r-head"><h4>凉拌手撕鸡（去油版）</h4></div>
+        <div class="r-badges"><span class="badge b1">低脂</span><span class="badge b3">30分钟</span></div>
+        <p class="desc">夏天没胃口时的凉拌主菜，鸡胸煮后手撕，口感不柴有诀窍。</p>
+        <div class="r-sec">食材：<span>鸡胸2块、黄瓜半根、蒜末、香醋15ml、生抽5ml、花椒油几滴</span></div>
+        <div class="r-sec">做法：<span>冷水下锅加姜片料酒，小火煮12分钟关火焖5分钟（保持嫩滑）；捞出过凉撕成条；与黄瓜丝、调味汁拌匀。以醋为主打味，减少盐的依赖。</span></div>
+        <div class="note">护心点评："焖熟"比"煮熟"更嫩，一滴炒菜油都不需要。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c2">
+        <div class="r-head"><h4>牛奶燕麦粥</h4></div>
+        <div class="r-badges"><span class="badge b2">β-葡聚糖</span><span class="badge b3">8分钟</span></div>
+        <p class="desc">早餐界的"天然他汀"——燕麦中的β-葡聚糖有助降低LDL-C。</p>
+        <div class="r-sec">食材：<span>生燕麦片50g、低脂牛奶250ml、蓝莓或香蕉片少许、无籽葡萄干几粒</span></div>
+        <div class="r-sec">做法：<span>燕麦片加少量水煮3–5分钟至软糯，倒入牛奶小火再煮2分钟；点缀水果即成。<strong>不加糖</strong>，甜味来自水果。</span></div>
+        <div class="note">护心点评：选配料表只有"燕麦"的产品；即食甜麦片、麦乳精不属于此类。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c2">
+        <div class="r-head"><h4>杂粮饭（基础版）</h4></div>
+        <div class="r-badges"><span class="badge b2">控糖主食</span><span class="badge b3">电饭煲</span></div>
+        <p class="desc">白米的一半换成粗杂粮，餐后血糖更平稳，饱腹感更强。</p>
+        <div class="r-sec">食材：<span>大米100g、糙米50g、燕麦米或小米30g、红豆或鹰嘴豆30g（提前泡）</span></div>
+        <div class="r-sec">做法：<span>杂豆提前浸泡4小时以上；所有食材入电饭煲，水量比纯白米略多一成，选"杂粮饭"模式。</span></div>
+        <div class="note">护心点评：一次多蒸分装冷冻，吃前复热，控糖人群记得把这份饭计入主食总量。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c2">
+        <div class="r-head"><h4>荞麦面条配蔬菜浇头</h4></div>
+        <div class="r-badges"><span class="badge b2">低GI</span><span class="badge b3">20分钟</span></div>
+        <p class="desc">荞麦的芦丁有助毛细血管健康，是面条里的"护心担当"。</p>
+        <div class="r-sec">食材：<span>荞麦面（荞麦含量≥50%）150g、鸡蛋1个、青菜、番茄、香菇</span></div>
+        <div class="r-sec">做法：<span>面条煮至八分熟捞出；少油炒番茄香菇出汁，加水打入鸡蛋成蛋花，下青菜，浇在面上。<strong>面汤含盐弃去不喝</strong>。</span></div>
+        <div class="note">护心点评：市售荞麦面常含盐，看配料表选钠含量低的，煮面水多可帮助析出钠。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c2">
+        <div class="r-head"><h4>紫薯银耳羹（无糖）</h4></div>
+        <div class="r-badges"><span class="badge b2">膳食纤维</span><span class="badge b3">40分钟</span></div>
+        <p class="desc">天然甜味的甜品，代替蛋糕、布丁。银耳多糖对肠道友好。</p>
+        <div class="r-sec">食材：<span>银耳半朵、紫薯1个、枸杞几粒</span></div>
+        <div class="r-sec">做法：<span>银耳泡发撕小朵，小火炖30分钟至出胶，加入紫薯块再煮10分钟，出锅撒枸杞。放温或冷藏食用。</span></div>
+        <div class="note">护心点评：紫薯的甜味足够，无需加冰糖；糖尿病患者计入主食量。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c2">
+        <div class="r-head"><h4>全麦香蕉燕麦饼</h4></div>
+        <div class="r-badges"><span class="badge b2">无添加糖</span><span class="badge b3">15分钟</span></div>
+        <p class="desc">熟香蕉的甜味 + 燕麦的纤维，适合做早餐或加餐。</p>
+        <div class="r-sec">食材：<span>熟透香蕉1根、即食燕麦片60g、鸡蛋1个、泡打粉2g</span></div>
+        <div class="r-sec">做法：<span>香蕉压泥，与燕麦、鸡蛋、泡打粉拌匀成糊；不粘锅小火，每勺一饼，两面各煎1–2分钟。</span></div>
+        <div class="note">护心点评：无需加糖加油，香蕉越熟甜度越高；糖尿病朋友减半食用并计入主食。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c3">
+        <div class="r-head"><h4>凉拌木耳</h4></div>
+        <div class="r-badges"><span class="badge b2">可溶性纤维</span><span class="badge b3">15分钟</span></div>
+        <p class="desc">木耳的可溶性膳食纤维有助胆固醇代谢，凉拌最爽口。</p>
+        <div class="r-sec">食材：<span>干木耳10g（泡发）、蒜末、香醋15ml、生抽5ml、香油数滴、小米辣可选</span></div>
+        <div class="r-sec">做法：<span>木耳泡发（<strong>冷藏泡发不超过4小时，忌隔夜久泡</strong>），沸水焯1分钟过凉；调味汁拌匀即成。</span></div>
+        <div class="note">护心点评：醋香开胃减盐；木耳泡发过久有椰毒假单胞菌污染风险，务必当天泡当天吃。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c3">
+        <div class="r-head"><h4>蒜蓉西兰花</h4></div>
+        <div class="r-badges"><span class="badge b2">十字花科</span><span class="badge b3">10分钟</span></div>
+        <p class="desc">十字花科蔬菜的代表，急火快炒保留营养。</p>
+        <div class="r-sec">食材：<span>西兰花300g、蒜末4瓣、盐2g</span></div>
+        <div class="r-sec">做法：<span>西兰花掰小朵，沸水焯30秒；热锅少油爆香蒜末，下西兰花大火炒1分钟，出锅前撒盐。</span></div>
+        <div class="note">护心点评：焯水+快炒双重锁营养；蒜素对血脂管理有辅助意义。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c3">
+        <div class="r-head"><h4>芹菜炒香干</h4></div>
+        <div class="r-badges"><span class="badge b1">植物蛋白</span><span class="badge b2">少油版</span></div>
+        <p class="desc">豆制品代替部分红肉，是"餐桌减脂"的实用搭配。</p>
+        <div class="r-sec">食材：<span>芹菜250g、香干100g、红椒丝、盐2g</span></div>
+        <div class="r-sec">做法：<span>芹菜斜切段，香干切条；锅刷薄油先煎香干微黄，下芹菜红椒大火翻炒2分钟，调味出锅。</span></div>
+        <div class="note">护心点评：香干本身含钠，调味手轻些；芹菜叶别扔，营养高于茎，可一起炒或做汤。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c3">
+        <div class="r-head"><h4>蚝油生菜（减盐版）</h4></div>
+        <div class="r-badges"><span class="badge b3">5分钟</span><span class="badge b2">高纤维</span></div>
+        <p class="desc">最快手的绿叶菜，白灼+薄芡，比炒更少油。</p>
+        <div class="r-sec">食材：<span>生菜400g、蒜末、蚝油8g（约半勺）、水淀粉少许</span></div>
+        <div class="r-sec">做法：<span>生菜沸水烫10秒捞出装盘；少油煸香蒜末，加蚝油和2勺水烧开，勾薄芡淋在生菜上。</span></div>
+        <div class="note">护心点评：半勺蚝油代替整勺酱油，钠减半；汤汁不额外再喝。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c3">
+        <div class="r-head"><h4>番茄炖豆腐</h4></div>
+        <div class="r-badges"><span class="badge b1">植物蛋白</span><span class="badge b2">低脂</span></div>
+        <p class="desc">酸甜开胃，全程不煎不炸，适合没胃口的夏天。</p>
+        <div class="r-sec">食材：<span>北豆腐300g、番茄2个、葱花、生抽5ml</span></div>
+        <div class="r-sec">做法：<span>番茄去皮切块，加少许水小火炒成酱；下豆腐块轻推，小火炖8分钟入味，撒葱花出锅。</span></div>
+        <div class="note">护心点评：北豆腐（石膏豆腐）钙含量更高，是补钙与优质蛋白的双赢选择。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c4">
+        <div class="r-head"><h4>冬瓜海带汤</h4></div>
+        <div class="r-badges"><span class="badge b2">低能量</span><span class="badge b3">30分钟</span></div>
+        <p class="desc">清爽低能量的例汤，海带富含钾与可溶性纤维。</p>
+        <div class="r-sec">食材：<span>冬瓜400g、干海带20g（泡发）、虾皮少许（可选）、白胡椒</span></div>
+        <div class="r-sec">做法：<span>海带泡发切条，与冬瓜块加水同煮20分钟至冬瓜透明，白胡椒调味。选无盐虾皮，起锅前再放。</span></div>
+        <div class="note">护心点评：服用华法林者保持每日海带等富含维生素K食物摄入量稳定即可，不必忌口。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c4">
+        <div class="r-head"><h4>香菇青菜豆腐汤</h4></div>
+        <div class="r-badges"><span class="badge b1">低脂</span><span class="badge b3">20分钟</span></div>
+        <p class="desc">一碗汤集齐菌菇、绿叶菜、豆制品三大护心食材。</p>
+        <div class="r-sec">食材：<span>鲜香菇4朵、小青菜150g、嫩豆腐半盒、姜丝、盐2g</span></div>
+        <div class="r-sec">做法：<span>香菇切片与姜丝煮出鲜味，下豆腐块煮5分钟，最后放青菜烫熟即调味出锅。</span></div>
+        <div class="note">护心点评：香菇的鸟苷酸是天然味精，无需鸡精；汤要淡，"能喝出咸味"就说明盐多了。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c4">
+        <div class="r-head"><h4>番茄土豆牛腩（去油炖法）</h4></div>
+        <div class="r-badges"><span class="badge b1">补铁</span><span class="badge b3">90分钟</span></div>
+        <p class="desc">馋红肉时的解法：选瘦牛腩、先焯油、后撇油，一个月解一次馋刚刚好。</p>
+        <div class="r-sec">食材：<span>瘦牛腩400g、番茄2个、土豆1个、洋葱半个、番茄膏1勺（非番茄沙司）</span></div>
+        <div class="r-sec">做法：<span>牛腩切块焯水；不粘锅少油煸洋葱与番茄膏，下牛腩加热水没过，小火炖1小时；加土豆番茄块再炖20分钟。<strong>炖好冷藏一夜，撇净凝固浮油</strong>再吃。</span></div>
+        <div class="note">护心点评：红肉每周控制在 500g 熟重以内，这样处理既过瘾又不超量。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c4">
+        <div class="r-head"><h4>燕麦南瓜糊</h4></div>
+        <div class="r-badges"><span class="badge b2">β-葡聚糖</span><span class="badge b3">15分钟</span></div>
+        <p class="desc">适合牙口不好的老人，也是控糖人群的温和加餐。</p>
+        <div class="r-sec">食材：<span>生燕麦片40g、南瓜150g</span></div>
+        <div class="r-sec">做法：<span>南瓜蒸熟，与燕麦片加适量水，料理机打成糊，小火煮开2分钟即成。南瓜自带甜味，无需加糖。</span></div>
+        <div class="note">护心点评：打成糊后升糖会快一些，糖尿病朋友整吃燕麦更佳，或不打糊直接煮粥。</div>
+      </div>
+
+      <div class="card recipe" data-cat="c4">
+        <div class="r-head"><h4>山楂苹果饮</h4></div>
+        <div class="r-badges"><span class="badge b2">无糖饮品</span><span class="badge b3">20分钟</span></div>
+        <p class="desc">替奶茶、可乐的"过渡饮品"——酸甜有滋味，但不含添加糖。</p>
+        <div class="r-sec">食材：<span>鲜山楂100g（或干山楂片15g）、苹果1个</span></div>
+        <div class="r-sec">做法：<span>山楂去核、苹果切块，加水800ml煮15分钟，滤渣温饮。冷热皆宜。</span></div>
+        <div class="note">护心点评：胃酸过多者餐后饮用、不空腹喝；此饮不能降脂，只是替代含糖饮料的健康选项。</div>
+      </div>
+
+    </div>
+
+    <!-- 调味革命 -->
+    <h3 style="font-size:1.25rem;margin:48px 0 18px">四、限盐不减味的六个调味法</h3>
+    <div class="season-grid">
+      <div class="card season">
+        <h4><span class="n">1</span>出锅再放盐</h4>
+        <ol>
+          <li>盐在表面比混在汤里"显得咸"，同样的量，咸感更明显</li>
+          <li>汤类尤其明显：喝之前点几滴酱油胜过炖时放盐</li>
+          <li>凉拌菜上桌前拌，避免出水带走咸味</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">2</span>善用酸味</h4>
+        <ol>
+          <li>醋能放大咸味感知：拌菜、汤羹加一勺香醋，盐可以少放三分之一</li>
+          <li>柠檬汁适合海鲜与鸡肉，黑胡椒+柠檬是经典低钠组合</li>
+          <li>番茄的天然酸味是"减盐神器"，炖菜多放番茄</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">3</span>香料增味</h4>
+        <ol>
+          <li>葱、姜、蒜、洋葱、香菜——炝锅增香不增钠</li>
+          <li>花椒、八角、桂皮、香叶、五香粉，炖肉的味觉层次来源</li>
+          <li>孜然、黑胡椒、辣椒（适量）、罗勒、迷迭香，各有妙用</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">4</span>鲜味替代法</h4>
+        <ol>
+          <li>香菇、虾皮（无盐）、海带、干贝提供天然谷氨酸</li>
+          <li>泡发香菇的水滤净后入菜，是零钠"味精"</li>
+          <li>火腿、鸡精、味精都含钠，用量要计入总盐量</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">5</span>控糖有替身</h4>
+        <ol>
+          <li>红豆沙、红枣、桂圆干自带甜味，煮粥无需加糖</li>
+          <li>熟香蕉、烤红薯的甜感可满足对甜食的渴望</li>
+          <li>需要"代糖"时赤藓糖醇相对稳妥，但目标是逐步习惯清淡</li>
+        </ol>
+      </div>
+      <div class="card season">
+        <h4><span class="n">6</span>逐步脱敏</h4>
+        <ol>
+          <li>味蕾约 6–8 周更新一轮，坚持清淡饮食，"重口味"会淡下来</li>
+          <li>循序渐进：先减三分之一，适应后再减，不搞"一刀切"</li>
+          <li>全家一起减盐——孩子从小习惯清淡，受益终身</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 外食 -->
+    <h3 style="font-size:1.25rem;margin:48px 0 18px">五、外出就餐与点外卖的生存指南</h3>
+    <div class="eatout">
+      <div class="card eo">
+        <h4>点菜策略</h4>
+        <ul>
+          <li>蒸、煮、白灼、凉拌菜占一半以上</li>
+          <li>"红烧""干锅""油焖""糖醋"字样出现即高油高糖</li>
+          <li>主动要求"少盐少油"——餐厅是可以做到的</li>
+          <li>汤和羹在饭前浅尝，不喝浓汤底</li>
+        </ul>
+      </div>
+      <div class="card eo">
+        <h4>外卖技巧</h4>
+        <ul>
+          <li>备注"少油少盐、酱料分开装"</li>
+          <li>选有"轻食""蒸煮"标签的商家，看营养标识选低钠款</li>
+          <li>饮料选无糖茶、白水，不搭"满杯 sweetness"套餐</li>
+          <li>一周外卖不超过 2–3 次，能自备餐尽量自备</li>
+        </ul>
+      </div>
+      <div class="card eo">
+        <h4>宴席场合</h4>
+        <ul>
+          <li>先吃蔬菜垫底，再吃蛋白，主食放最后</li>
+          <li>肥肉、内脏、蟹黄浅尝辄止；鱼虾可以多吃些</li>
+          <li>饮酒能推则推，硬要喝：红酒不超150ml、啤酒不超350ml</li>
+          <li>饭后散步 20 分钟，平稳餐后血糖</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 采购清单 -->
+    <h3 style="font-size:1.25rem;margin:48px 0 18px">六、一次护心采购清单（每周示例）</h3>
+    <div class="scrollx">
+      <table class="target">
+        <thead><tr><th>类别</th><th>采购建议</th><th>数量参考（2–3口人）</th></tr></thead>
+        <tbody>
+          <tr><td>深色蔬菜</td><td>菠菜、油菜、西兰花、番茄、彩椒、洋葱、菌菇</td><td>每天约500g，一周7–8种轮换</td></tr>
+          <tr><td>水果</td><td>苹果、橙子、蓝莓、猕猴桃（应季优先）</td><td>每天200–350g</td></tr>
+          <tr><td>全谷物杂豆</td><td>生燕麦片、糙米、小米、荞麦面、红豆、鹰嘴豆</td><td>主食的一半</td></tr>
+          <tr><td>水产</td><td>鲈鱼、三文鱼、沙丁鱼、鲜虾</td><td>每周2次，共300–500g</td></tr>
+          <tr><td>禽畜肉</td><td>去皮鸡胸、鸡腿、瘦牛腩、里脊</td><td>每周红肉≤500g（熟重）</td></tr>
+          <tr><td>豆制品蛋奶</td><td>北豆腐、香干、鸡蛋、低脂牛奶/无糖酸奶</td><td>每天蛋1个、奶300ml</td></tr>
+          <tr><td>油脂坚果</td><td>橄榄油/菜籽油/茶油轮换、原味核桃坚果</td><td>油每天25–30g、坚果每天约10g</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 运动 ================= -->
+<section id="sport">
+  <div class="wrap">
+    <span class="eyebrow">Exercise · 科学运动</span>
+    <h2 class="sec-title">运动是良药，但要"对症"</h2>
+    <p class="sec-sub">规律运动可使心血管病风险下降约三成。核心原则：循序渐进、量力而行、贵在坚持。</p>
+    <div class="sport-grid">
+      <div>
+        <ul class="sport-list">
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><div><b>有氧运动 · 每周 150 分钟中等强度</b>快走、慢跑、游泳、骑行、广场舞、椭圆机，每次 30 分钟、每周 5 次；或高强度 75 分钟/周。餐后 1 小时开始为宜，别空腹晨练。</div></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7v10M18 7v10M6 12h12"/></svg></span><div><b>力量训练 · 每周 2 次</b>弹力带、靠墙静蹲、举小哑铃、俯卧撑（可跪姿）。练一次休息一天，同一个肌群不连续两天练。肌肉是代谢的"发动机"，中老年人更需要。</div></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17h16M6 17a6 6 0 0 1 12 0"/></svg></span><div><b>柔韧与平衡 · 每周 2–3 次</b>拉伸、太极拳、八段锦、单脚站立练习。防跌倒对老年朋友同样重要——跌倒骨折的卧床期是心血管事件的温床。</div></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg></span><div><b>碎片活动也有效</b>久坐每小时起身活动 3 分钟；爬楼代替电梯早高峰；把车停远一点。日常"非运动性消耗"积少成多。</div></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9L2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><div><b>这些情况暂停运动、先就医</b>静息血压 ≥180/110 mmHg；感冒发热伴胸闷心慌；运动中出现胸痛、明显气短、头晕眼前发黑、心悸不规律——立即停止。心梗/术后患者请在医生指导下进行心脏康复，勿自行加量。</div></li>
+        </ul>
+      </div>
+      <div class="card sport-talk">
+        <h3>运动强度自测：说话试验</h3>
+        <div class="lvl good"><b>中等强度（推荐目标）</b>能说话但不能唱歌——微微出汗、呼吸加快、还能连贯聊天。大多数成年人日常锻炼的安全区。</div>
+        <div class="lvl mid"><b>低强度</b>能轻松唱歌——热身或恢复日的状态，适合刚开始运动、高龄或大病初愈者起步。</div>
+        <div class="lvl bad"><b>过高强度（警惕）</b>连一句完整的话都说不出来——对多数中老年人和心血管病患者已属过载，应放慢或停下。</div>
+        <p style="font-size:.88rem;color:var(--ink-soft);margin-top:14px">也可数脉搏：中等强度约 =（220 − 年龄）× 60%–70% 次/分。运动前后各测一次血压更稳妥（高血压患者）。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Q&amp;A · 常见问答</span>
+    <h2 class="sec-title">诊室里被问得最多的十个问题</h2>
+    <p class="sec-sub" style="margin-bottom:36px">以下回答为一般性科普，不能替代面诊。</p>
+    <div class="faq">
+      <details class="faq-item" open>
+        <summary>1. 体检查出卵圆孔未闭（PFO），需要马上做封堵手术吗？</summary>
+        <div class="faq-body">不需要。约四分之一的成年人都有 PFO，绝大多数终生无症状、无需治疗。需要进一步评估的情形主要是：发生过不明原因的脑卒中/短暂性脑缺血发作，或频繁发作的先兆偏头痛。即便评估后，是否封堵也要由心内科与神经科医生综合判断。切勿因为"体检发现"而焦虑，也切勿自行服药。</div>
+      </details>
+      <details class="faq-item">
+        <summary>2. 阿司匹林能不能买来天天吃，"预防"心脏病？</summary>
+        <div class="faq-body">不能自行服用。阿司匹林用于"二级预防"——已经确诊冠心病、做过支架或心梗的患者获益明确；但用于无病史的普通人做"一级预防"，出血风险（消化道出血、脑出血）可能抵消获益。是否需要，请让医生评估您的风险分层后决定。</div>
+      </details>
+      <details class="faq-item">
+        <summary>3. 胆固醇高，鸡蛋黄还能吃吗？</summary>
+        <div class="faq-body">可以吃，一般健康人群每天 1 个鸡蛋没有问题，研究并未显示适量鸡蛋摄入显著增加心血管风险。更需要管住的是反式脂肪（起酥点心、植脂末）和过量的红肉、动物内脏。血脂明显异常者，请以医生和临床营养师的具体建议为准。</div>
+      </details>
+      <details class="faq-item">
+        <summary>4. 他汀要吃一辈子吗？伤肝伤肾吗？</summary>
+        <div class="faq-body">确诊动脉粥样硬化性心血管病的患者，他汀通常需要长期服用，擅自停药是病情反弹的常见原因。他汀总体安全性良好，少数人出现肌肉酸痛或转氨酶升高，医生会通过调整剂量或换药处理。请定期复查血脂与肝功能，把疑虑带到诊室，而不是把药停掉。</div>
+      </details>
+      <details class="faq-item">
+        <summary>5. 血压降到 140/90 以下，感觉好了，能停药吗？</summary>
+        <div class="faq-body">不能自行停药。血压"正常"正是药物在起作用。高血压大多需要长期管理，骤然停药可引起血压反跳甚至诱发心脑血管事件。调整药物请与医生商量，生活方式改善做得好，确有患者在医生指导下减量成功的。</div>
+      </details>
+      <details class="faq-item">
+        <summary>6. 心脏支架做完就"根治"了吗？</summary>
+        <div class="faq-body">支架解决的是"最狭窄的那一段"，并不去除动脉粥样硬化的土壤。术后必须坚持：按时服用抗血小板等药物、戒烟、控制三高、规律运动、定期复查——这五件事做不到，血管其他部位还会出问题，支架内也可能再狭窄。</div>
+      </details>
+      <details class="faq-item">
+        <summary>7. 突发胸痛，应该自己打车去医院还是打 120？</summary>
+        <div class="faq-body">打 120。救护车上有设备与药物，途中即可做心电图并传输至医院，到达后直接进入绿色通道，比自己打车节省的时间往往就是心肌。等待时：停止一切活动、原地坐下或半卧、保持镇定、解开衣领；有硝酸甘油可遵既往医嘱舌下含服（血压低者禁用），阿司匹林需在排除主动脉夹层等禁忌前不要自行嚼服。</div>
+      </details>
+      <details class="faq-item">
+        <summary>8. 心脏瓣膜病可以"吃药治好"吗？</summary>
+        <div class="faq-body">药物不能修复瓣膜的结构问题。药物的作用是减轻心脏负担、控制症状和并发症，延缓病情进展；结构性修复要靠外科手术或介入治疗。关键是按时复查超声（一般 6–12 个月一次），在医生建议的"最佳时机"手术，而不是等症状很重了才治。</div>
+      </details>
+      <details class="faq-item">
+        <summary>9. 有心脏病还能运动吗？</summary>
+        <div class="faq-body">绝大多数能，而且应该动——但方式和强度需要"处方化"。稳定期患者在医生评估后，从低强度起步循序渐进；心梗后、支架后、心衰患者建议参加正规的<strong>心脏康复计划</strong>，在监护下运动既安全又高效。完全不动反而导致体能衰退、血栓风险增加。</div>
+      </details>
+      <details class="faq-item">
+        <summary>10. 网上卖的"清血管""软化血管"的保健品靠谱吗？</summary>
+        <div class="faq-body">不靠谱。目前没有任何保健品、偏方被证实能"清除斑块、软化血管"。动脉粥样硬化的防治靠的是：他汀等正规药物 + 戒烟限酒 + 饮食运动 + 控三高。花在"疏通血管保健品"上的钱，不如买一双好走的鞋和一周的深海鱼。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 博客精选 ================= -->
+<section id="blog" style="background:var(--paper)">
+  <style>
+    .blog-feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+    @media(max-width:820px){.blog-feat{grid-template-columns:1fr}}
+    .bf-card{display:flex;flex-direction:column;gap:10px;padding:26px 24px;transition:transform .25s,box-shadow .25s}
+    .bf-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(60,30,25,.12)}
+    .bf-tag{align-self:flex-start;font-size:.74rem;letter-spacing:.12em;color:#fff;background:var(--crimson);padding:4px 12px;border-radius:999px}
+    .bf-card h3{font-size:1.18rem;line-height:1.4}
+    .bf-card p{color:var(--ink-soft);font-size:.95rem;flex:1}
+    .bf-more{color:var(--crimson);font-weight:600;font-size:.92rem}
+    .blog-cta{margin-top:36px}
+  </style>
+  <div class="wrap">
+    <span class="eyebrow">医生专栏 · 持续更新</span>
+    <h2 class="sec-title">博客精选</h2>
+    <p class="sec-sub">除系统化的科普词条，我也在博客里写门诊故事、饮食连载与诊室答疑——更轻松、更鲜活，欢迎常来。</p>
+    <div class="blog-feat">
+      <a class="bf-card card" href="blog/posts/pfo-clinic-story.html">
+        <span class="bf-tag">门诊故事</span>
+        <h3>一次体检发现的"卵圆孔未闭"</h3>
+        <p>年轻人为何会中风？一个真实门诊病例，讲清 PFO 与隐源性卒中的关系。</p>
+        <span class="bf-more">阅读全文 →</span>
+      </a>
+      <a class="bf-card card" href="blog/posts/weekly-dish-tofu-tomato.html">
+        <span class="bf-tag">每周一菜</span>
+        <h3>番茄炖豆腐：护心又下饭</h3>
+        <p>低脂高钙、富含番茄红素，一道适合全家的心血管友好家常菜。</p>
+        <span class="bf-more">阅读全文 →</span>
+      </a>
+      <a class="bf-card card" href="blog/posts/statin-longterm.html">
+        <span class="bf-tag">诊室答疑</span>
+        <h3>他汀，到底要不要吃一辈子？</h3>
+        <p>关于他汀的常见顾虑：伤肝吗、能停吗、要吃多久，一次说清。</p>
+        <span class="bf-more">阅读全文 →</span>
+      </a>
+    </div>
+    <div class="blog-cta">
+      <a class="btn btn-primary" href="blog/">进入博客，看全部文章 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 页脚 ================= -->
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>孟自力 · 心血管健康科普平台</h4>
+      <p>把专业的医学知识，翻译成家人听得懂的话。心血管疾病可防可控——从今天的一餐一饭、一步一程开始。</p>
+      <ul style="margin-top:14px">
+        <li>· 疾病科普：PFO / 瓣膜病 / 冠心病 / 先心病 / 大血管疾病</li>
+        <li>· 生活方式：预防保健 / 饮食营养 / 护心烹饪 / 科学运动</li>
+      </ul>
+    </div>
+    <div>
+      <h4>重要提醒</h4>
+      <p>本网站全部内容为健康科普，不构成诊疗建议，不能替代医生的当面诊治。如有不适，请及时前往正规医疗机构就诊；急症请立即拨打 120。</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="disclaimer">
+      <strong style="color:#fff">免责声明：</strong>本页面内容基于公开医学指南与一般临床共识整理，用于大众健康教育。个体病情差异很大，具体诊断、用药与治疗方案请务必咨询主诊医生。文中"统计数据"引自公开流行病学资料，仅供理解疾病负担参考。
+    </div>
+    <div class="copy">© 2026 孟自力心血管健康科普 · 本页内容仅供学习交流，转载请注明出处</div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="回到顶部"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<script>
+// 疾病科普选项卡
+document.querySelectorAll('.dis-tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.dis-tab').forEach(function(t){t.classList.remove('active')});
+    document.querySelectorAll('.dis-panel').forEach(function(p){p.classList.remove('active')});
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.panel).classList.add('active');
+  });
+});
+
+// 食谱筛选
+document.querySelectorAll('.rf').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.rf').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    var cat = btn.dataset.cat;
+    document.querySelectorAll('#recipeBox .recipe').forEach(function(card){
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  });
+});
+
+// 隐形盐估算
+document.getElementById('calcBtn').addEventListener('click', function(){
+  var score = 0;
+  ['c1','c2','c3','c4'].forEach(function(id){
+    score += parseInt(document.getElementById(id).value, 10) || 0;
+  });
+  var box = document.getElementById('calcResult');
+  // 粗略估算：基准2g + 每项系数
+  var salt = 2 + score * 1.2;
+  var msg;
+  box.className = 'calc-result';
+  if (score <= 1){
+    box.classList.add('ok');
+    msg = '<b>估算结果：约 ' + salt.toFixed(1) + ' g 盐/天</b><br>控制得不错，在每日 5g 推荐线附近或以下。继续保持出锅放盐、醋香代咸的好习惯。';
+  } else if (score <= 4){
+    box.classList.add('warn');
+    msg = '<b>估算结果：约 ' + salt.toFixed(1) + ' g 盐/天</b><br>可能已超过 5g 推荐上限。建议：查看零食与酱料配料表的钠含量，用了酱油蚝油就不再额外放盐，汤别喝到底。';
+  } else {
+    box.classList.add('bad');
+    msg = '<b>估算结果：约 ' + salt.toFixed(1) + ' g 盐/天</b><br>明显超出推荐量，属于"重口味"饮食模式，长期将推高血压、增加心血管风险。建议从今天起：外卖减半、咸菜下桌、改用限盐勺，并监测血压。';
+  }
+  box.innerHTML = msg;
+});
+
+// 回到顶部
+var toTop = document.getElementById('toTop');
+window.addEventListener('scroll', function(){
+  toTop.classList.toggle('show', window.scrollY > 600);
+});
+toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+</script>
+</body>
+</html>

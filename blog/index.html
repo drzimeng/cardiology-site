@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孟自力 · 医生博客 | 门诊故事 · 每周一菜 · 诊室答疑</title>
+<meta name="description" content="心血管病专家孟自力的个人博客：门诊真实病例故事、护心饮食每周一菜连载、诊室高频答疑，与主站科普词条相互补充。">
+<style>
+:root{
+  --crimson:#b3382e;
+  --crimson-deep:#8c2620;
+  --crimson-soft:#f7ebe9;
+  --ink:#2b2b2f;
+  --ink-soft:#5c5c66;
+  --paper:#faf8f5;
+  --card:#ffffff;
+  --line:#e8e2da;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(60,30,25,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",sans-serif;background:var(--paper);color:var(--ink);line-height:1.85;font-size:16.5px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;letter-spacing:.18em;color:var(--crimson);font-weight:600;margin-bottom:14px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--crimson)}
+h2.sec-title{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:700;letter-spacing:.02em;line-height:1.3;margin-bottom:10px}
+.sec-sub{color:var(--ink-soft);max-width:640px;margin-bottom:40px;font-size:1rem}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,245,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.06rem;letter-spacing:.04em}
+.brand svg{flex:none}
+.brand small{display:block;font-size:.68rem;color:var(--ink-soft);font-weight:500;letter-spacing:.22em}
+nav.mainnav{display:flex;gap:4px;flex-wrap:wrap}
+nav.mainnav a{font-size:.9rem;padding:7px 13px;border-radius:999px;color:var(--ink-soft);transition:all .25s}
+nav.mainnav a:hover{color:var(--crimson);background:var(--crimson-soft)}
+nav.mainnav a.active{color:#fff;background:var(--crimson)}
+@media(max-width:760px){nav.mainnav{display:none}}
+.hero{padding:140px 0 70px;background:radial-gradient(900px 460px at 85% -10%, rgba(179,56,46,.10), transparent 60%),radial-gradient(700px 400px at -5% 110%, rgba(74,124,89,.08), transparent 60%);border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(2rem,4.6vw,3.1rem);line-height:1.22;font-weight:700;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--crimson)}
+.hero p.lead{color:var(--ink-soft);font-size:1.05rem;max-width:60ch;margin-bottom:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:999px;font-weight:600;font-size:.98rem;transition:transform .2s,box-shadow .2s}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--crimson);color:#fff;box-shadow:0 8px 20px rgba(179,56,46,.28)}
+.btn-primary:hover{background:var(--crimson-deep)}
+section{padding:80px 0}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:900px){.posts{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.posts{grid-template-columns:1fr}}
+.pc{display:flex;flex-direction:column;gap:12px;padding:26px 24px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+.pc:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(60,30,25,.12)}
+.pc.soon{opacity:.62}
+.pc-tag{align-self:flex-start;font-size:.74rem;letter-spacing:.12em;color:#fff;background:var(--crimson);padding:4px 12px;border-radius:999px}
+.pc-tag.g{background:var(--ink-soft)}
+.pc h3{font-size:1.18rem;line-height:1.4}
+.pc p{color:var(--ink-soft);font-size:.94rem;flex:1}
+.pc-more{color:var(--crimson);font-weight:600;font-size:.92rem}
+.pc.soon .pc-more{color:var(--ink-soft)}
+footer{background:var(--crimson-deep);color:#fff;padding:48px 0 30px;margin-top:30px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:30px}
+@media(max-width:760px){footer .wrap{grid-template-columns:1fr}}
+footer h4{font-size:1.05rem;margin-bottom:12px}
+footer p{color:rgba(255,255,255,.86);font-size:.92rem}
+footer .disc{background:rgba(0,0,0,.18);border-radius:12px;padding:16px 18px;font-size:.84rem;line-height:1.7;margin-top:18px}
+footer .copy{margin-top:22px;font-size:.8rem;color:rgba(255,255,255,.7)}
+footer a.ul{color:#ffd9d4;text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="../index.html" class="brand">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z" fill="#b3382e"/><path d="M3.5 12h3l1.5-3 2.5 6 2-4.5 1.5 2.5h4" stroke="#faf8f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <span>孟自力<small>医生博客 · BLOG</small></span>
+    </a>
+    <nav class="mainnav">
+      <a href="../index.html">返回主页</a>
+      <a href="posts/pfo-clinic-story.html">门诊故事</a>
+      <a href="posts/weekly-dish-tofu-tomato.html">每周一菜</a>
+      <a href="posts/statin-longterm.html">诊室答疑</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">主任医师 · 心血管病专家</span>
+    <h1>诊室之外，<em>把话慢慢说</em></h1>
+    <p class="lead">这里是我的个人博客。比起主页上系统化的科普词条，这里更轻松——写门诊里遇到的真实故事、每周一道护心家常菜，以及诊室里被反复问到的问题。希望它们能陪你把"护心"这件事，过成日常。</p>
+    <a class="btn btn-primary" href="../index.html">回到科普主页 →</a>
+  </div>
+</section>
+
+<section id="articles">
+  <div class="wrap">
+    <span class="eyebrow">最新文章</span>
+    <h2 class="sec-title">文章列表</h2>
+    <p class="sec-sub">按主题浏览：门诊故事讲病例，每周一菜教做菜，诊室答疑解疑惑。更多内容持续更新中。</p>
+    <div class="posts">
+
+      <a class="pc" href="posts/pfo-clinic-story.html">
+        <span class="pc-tag">门诊故事</span>
+        <h3>一次体检发现的"卵圆孔未闭"</h3>
+        <p>一个 30 岁、没有明显危险因素却突发脑梗的年轻人，问题竟出在心脏上那个"本该闭合的小孔"。</p>
+        <span class="pc-more">阅读全文 →</span>
+      </a>
+
+      <a class="pc" href="posts/weekly-dish-tofu-tomato.html">
+        <span class="pc-tag">每周一菜</span>
+        <h3>番茄炖豆腐：护心又下饭</h3>
+        <p>低脂、高钙、富含番茄红素，做法零失败。一道适合全家人长期吃的"护心菜"。</p>
+        <span class="pc-more">阅读全文 →</span>
+      </a>
+
+      <a class="pc" href="posts/statin-longterm.html">
+        <span class="pc-tag">诊室答疑</span>
+        <h3>他汀，到底要不要吃一辈子？</h3>
+        <p>伤肝吗？能停吗？要吃多久？把关于他汀最常见的顾虑，一次说清楚。</p>
+        <span class="pc-more">阅读全文 →</span>
+      </a>
+
+      <div class="pc soon">
+        <span class="pc-tag g">筹备中</span>
+        <h3>冠心病支架术后，怎么动才安全？</h3>
+        <p>支架不是"免死金牌"，术后康复运动有讲究。即将上线。</p>
+        <span class="pc-more">敬请期待</span>
+      </div>
+
+      <div class="pc soon">
+        <span class="pc-tag g">筹备中</span>
+        <h3>高血压饮食的 5 个常见误区</h3>
+        <p>"吃盐少就行？"——关于降压饮食，很多人第一步就错了。即将上线。</p>
+        <span class="pc-more">敬请期待</span>
+      </div>
+
+      <div class="pc soon">
+        <span class="pc-tag g">筹备中</span>
+        <h3>房颤：心脏"乱跳"要不要紧？</h3>
+        <p>阵发性心悸背后，可能藏着中风风险。即将上线。</p>
+        <span class="pc-more">敬请期待</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>孟自力 · 心血管健康科普</h4>
+      <p>主页是系统化的疾病科普词条，博客是更轻松的门诊故事与日常分享。两者互为补充，帮你把心血管健康真正过成生活。</p>
+      <div class="disc"><strong>免责声明：</strong>本博客全部内容为健康科普，不构成诊疗建议，不能替代医生的当面诊治。如有不适，请及时前往正规医疗机构就诊；急症请立即拨打 120。</div>
+    </div>
+    <div>
+      <h4>快速导航</h4>
+      <p>· <a class="ul" href="../index.html">返回科普主页</a><br>· <a class="ul" href="posts/pfo-clinic-story.html">门诊故事</a><br>· <a class="ul" href="posts/weekly-dish-tofu-tomato.html">每周一菜</a><br>· <a class="ul" href="posts/statin-longterm.html">诊室答疑</a></p>
+    </div>
+  </div>
+  <div class="wrap"><div class="copy">© 2026 孟自力心血管健康科普 · 本博客内容仅供学习交流，转载请注明出处</div></div>
+</footer>
+
+</body>
+</html>
