@@ -58,10 +58,27 @@ def inline(s):
 BLOCK = re.compile(
     r'<div class="casebox">.*?</div>'
     r'|<div class="note">.*?</div>'
+    r'|<figure[^>]*>.*?</figure>'
     r"|<h2>.*?</h2>|<h3>.*?</h3>|<p[^>]*>.*?</p>"
-    r"|<ul>.*?</ul>|<ol>.*?</ol>",
+    r"|<ul>.*?</ul>|<ol>.*?</ol>"
+    r"|<img[^>]*/?>"
+    r"|<video[^>]*>.*?</video>",
     re.S,
 )
+
+
+def strip_rel(src):
+    """HTML 源文件位于 posts/ 下用 ../img/ 引用；转换进 posts.js 后由 SPA（/blog/）渲染，
+    需去掉 ../ 前缀使其相对 /blog/ 解析。"""
+    return re.sub(r"^(?:\.\./)+", "", src)
+
+
+def img_md(tag):
+    m = re.search(r'src="([^"]*)"', tag)
+    if not m:
+        return ""
+    alt = re.search(r'alt="([^"]*)"', tag)
+    return "![" + (alt.group(1) if alt else "") + "](" + strip_rel(m.group(1)) + ")"
 
 
 def list_md(chunk, ordered=False):
@@ -85,6 +102,25 @@ def html_to_md(body):
         elif chunk.startswith('<div class="note">'):
             inner = re.sub(r'^<div class="note">|</div>$', "", chunk)
             parts.append("> " + inline(inner))
+        elif chunk.startswith("<figure"):
+            img = re.search(r"<img[^>]*>", chunk)
+            vid = re.search(r"<video[^>]*>.*?</video>", chunk, flags=re.S)
+            cap = re.search(r"<figcaption>(.*?)</figcaption>", chunk, flags=re.S)
+            if vid:
+                seg = re.sub(r'src="(?:\.\./)+', 'src="', vid.group(0))
+            elif img:
+                seg = img_md(img.group(0))
+            else:
+                seg = ""
+            if cap:
+                seg += (("\n\n" + "*" + inline(cap.group(1)) + "*") if seg
+                        else "*" + inline(cap.group(1)) + "*")
+            parts.append(seg)
+        elif chunk.startswith("<img"):
+            parts.append(img_md(chunk))
+        elif chunk.startswith("<video"):
+            # 视频原样透传（marked.js 保留块级 HTML），仅规整相对路径
+            parts.append(re.sub(r'src="(?:\.\./)+', 'src="', chunk))
         elif chunk.startswith("<h2>"):
             parts.append("## " + inline(chunk))
         elif chunk.startswith("<h3>"):
@@ -121,6 +157,24 @@ def parse_html_post(path):
     }
 
 
+# ---------------- 强调语法规范化 ----------------
+def emphasis_to_html(text):
+    """把 Markdown 强调语法转为行内 HTML。
+
+    背景：`**加粗**` 的闭合符紧贴中文标点时（如"中风）**的"），marked.js 依
+    CommonMark 侧翼规则会拒绝解析，页面上残留字面星号。改用 <strong>/<em>
+    行内标签可被 marked 稳定透传，全站 16 篇均有此问题，故在构建时统一转换。
+    跳过 ``` 代码围栏，避免破坏代码内容（已核验代码块内无 **）。
+    """
+    parts = re.split(r"(```.*?```)", text, flags=re.S)
+    for i in range(0, len(parts), 2):
+        seg = parts[i]
+        seg = re.sub(r"\*\*([^*\n]+?)\*\*", r"<strong>\1</strong>", seg)
+        seg = re.sub(r"(?<!\*)\*([^*\n]+?)\*(?!\*)", r"<em>\1</em>", seg)
+        parts[i] = seg
+    return "".join(parts)
+
+
 # ---------------- JS 输出 ----------------
 def js_str(s):
     return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n") + '"'
@@ -150,6 +204,8 @@ def main():
     new = [parse_md(p) for p in md_files]
     old = [parse_html_post(p) for p in sorted(HTML_DIR.glob("*.html"))]
     posts = new + old
+    for p in posts:
+        p["body"] = emphasis_to_html(p["body"])
     lines = [
         "/* ============================================================",
         "   博客文章数据（唯一内容源 · 内容与展示分离）",

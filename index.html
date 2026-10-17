@@ -130,6 +130,14 @@ nav.mainnav a:hover{color:var(--crimson);background:var(--crimson-soft)}
 .dis-block ul{margin:8px 0 0 0;padding-left:0;list-style:none}
 .dis-block ul li{font-size:.93rem;color:var(--ink-soft);padding-left:18px;position:relative;margin-bottom:6px}
 .dis-block ul li::before{content:"·";position:absolute;left:4px;color:var(--crimson);font-weight:900}
+/* PFO 词条媒体区（机制图 + 竖版视频） */
+.dis-media{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;margin-top:22px;align-items:start}
+.dis-fig{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px}
+.dis-fig img,.dis-fig video{width:100%;display:block;border-radius:12px;background:#f4f1ec}
+.dis-fig video{max-height:420px;object-fit:contain}
+.dis-fig figcaption{font-size:.85rem;color:var(--ink-soft);line-height:1.75;margin-top:10px}
+.dis-fig figcaption b{color:var(--crimson-deep)}
+@media(max-width:900px){.dis-media{grid-template-columns:1fr}.dis-fig video{max-height:340px}}
 .tagline{
   margin-top:24px;padding:16px 22px;border-radius:14px;
   background:var(--crimson-soft);color:var(--crimson-deep);
@@ -424,6 +432,16 @@ footer ul{list-style:none}
             <li>药物治疗（如抗血小板）方案由医生根据个体情况制定</li>
           </ul>
         </div>
+      </div>
+      <div class="dis-media">
+        <figure class="dis-fig">
+          <img src="assets/pfo/PFO-img09-反常栓塞-PFO通道.jpg" alt="PFO 反常栓塞机制示意图：静脉血栓经卵圆孔进入脑循环" loading="lazy">
+          <figcaption><b>图 1｜反常栓塞机制：</b>静脉系统里的血栓（黄色所示）本应被肺脏滤过，却可能经房间隔上的 PFO"后门"直接进入左心，随动脉血流打入脑动脉，引发缺血性卒中。<b>（3D 示意图）</b></figcaption>
+        </figure>
+        <figure class="dis-fig">
+          <video src="assets/pfo/PFO-v04V-竖版-反常栓塞机制.mp4" controls playsinline preload="metadata"></video>
+          <figcaption><b>视频｜</b>血栓经 PFO 抵达脑部的动态演示（竖版，约 9 秒，可点击播放）。封堵术正是通过"关掉这扇后门"来预防复发。</figcaption>
+        </figure>
       </div>
       <div class="tagline"><b>大众须知：</b>体检查出 PFO 不必恐慌——约每 4 个成年人就有 1 个存在 PFO，绝大多数终生相安无事。需要重点关注的是<strong>不明原因的年轻卒中、频繁先兆偏头痛</strong>人群，建议到心血管专科做系统评估，切勿自行长期服用阿司匹林等药物。</div>
       <div class="alert"><b>立即就医的信号</b>突发一侧肢体无力或麻木、口角歪斜、言语不清、视物成双、剧烈头痛、突发眩晕伴走路不稳——这些是脑卒中征象，请立即拨打 120，记录发病时间。</div>
