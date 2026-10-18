@@ -796,7 +796,7 @@ footer ul{list-style:none}
 
     <!-- 烹饪方式 -->
     <h3 style="font-size:1.25rem;margin-bottom:18px">一、烹饪方式红黑榜</h3>
-    <div class="kitchen-intro">
+    <div class="kitchen-intro" data-collapse="3">
       <div class="card cook-way good">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17h16M6 17a6 6 0 0 1 12 0"/><path d="M12 11V7m-2 0h4"/></svg></div>
         <h4>蒸</h4><p>最推荐。不加或极少加油，保留营养与原味，适合鱼、蛋、薯类、叶菜</p>
@@ -817,7 +817,7 @@ footer ul{list-style:none}
 
     <!-- 食材处理技巧 -->
     <h3 style="font-size:1.25rem;margin:44px 0 18px">二、食材处理五个小技巧</h3>
-    <div class="season-grid">
+    <div class="season-grid" data-collapse="3">
       <div class="card season">
         <h4><span class="n">1</span>肉去脂，先"冷后热"</h4>
         <ol>
@@ -884,7 +884,7 @@ footer ul{list-style:none}
       <button class="rf" data-cat="c3">蔬菜豆类</button>
       <button class="rf" data-cat="c4">汤羹甜品</button>
     </div>
-    <div class="recipes" id="recipeBox">
+    <div class="recipes" id="recipeBox" data-collapse="3">
 
       <div class="card recipe" data-cat="c1">
         <div class="r-head"><h4>清蒸鲈鱼</h4></div>
@@ -1079,7 +1079,7 @@ footer ul{list-style:none}
 
     <!-- 调味革命 -->
     <h3 style="font-size:1.25rem;margin:48px 0 18px">四、限盐不减味的六个调味法</h3>
-    <div class="season-grid">
+    <div class="season-grid" data-collapse="3">
       <div class="card season">
         <h4><span class="n">1</span>出锅再放盐</h4>
         <ol>
@@ -1388,7 +1388,7 @@ footer ul{list-style:none}
     <span class="eyebrow">医生专栏 · 持续更新</span>
     <h2 class="sec-title">博客精选</h2>
     <p class="sec-sub">除系统化的科普词条，博客里还有诊疗路径与思路、门诊病例故事、护心饮食与诊室答疑——更专业、更鲜活，欢迎常来。</p>
-    <div class="blog-feat">
+    <div class="blog-feat" data-collapse="3">
       <a class="bf-card card" href="blog/index.html#/post/pfo-clinic-story">
         <span class="bf-tag">门诊故事</span>
         <h3>一次体检发现的"卵圆孔未闭"</h3>
@@ -1502,6 +1502,8 @@ document.querySelectorAll('.rf').forEach(function(btn){
     document.querySelectorAll('#recipeBox .recipe').forEach(function(card){
       card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
     });
+    // 筛选后按当前可见条目重算折叠状态（保留读者此前的展开/折叠选择）
+    if (window.Collapsible) window.Collapsible.refresh(document.getElementById('recipeBox'));
   });
 });
 
@@ -1551,5 +1553,6 @@ toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'sm
 </script>
 <script src="assets/js/interactions.js"></script>
 <script src="assets/js/social-links.js"></script>
+<script src="assets/js/collapsible.js"></script>
 </body>
 </html>
