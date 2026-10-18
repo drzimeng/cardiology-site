@@ -59,13 +59,14 @@ nav.mainnav a:hover{color:var(--crimson);background:var(--crimson-soft)}
 
 /* ============ Hero ============ */
 .hero{
-  padding:150px 0 90px;
+  padding:136px 0 76px;
   background:
     radial-gradient(1000px 500px at 85% -10%, rgba(179,56,46,.10), transparent 60%),
     radial-gradient(700px 400px at -5% 110%, rgba(74,124,89,.08), transparent 60%);
   border-bottom:1px solid var(--line);
 }
 .hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+.hero .wrap > *{min-width:0}
 @media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:40px}}
 .hero h1{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.22;font-weight:700;letter-spacing:.01em;margin-bottom:20px}
 .hero h1 em{font-style:normal;color:var(--crimson)}
@@ -82,23 +83,31 @@ nav.mainnav a:hover{color:var(--crimson);background:var(--crimson-soft)}
 .btn-ghost{border:1.5px solid var(--line);color:var(--ink);background:#fff}
 .btn-ghost:hover{border-color:var(--crimson);color:var(--crimson)}
 /* 医生名片 */
-.doc-card{padding:34px 32px;position:relative;overflow:hidden}
+.doc-card{padding:30px 30px 26px;position:relative;overflow:hidden}
 .doc-card::before{
   content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;
   background:radial-gradient(circle, rgba(179,56,46,.08), transparent 70%);
 }
-.doc-avatar{
-  width:76px;height:76px;border-radius:50%;
-  background:linear-gradient(135deg,var(--crimson),var(--crimson-deep));
-  color:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:1.7rem;font-weight:700;letter-spacing:.1em;margin-bottom:18px;
-  box-shadow:0 10px 24px rgba(140,38,32,.3);
-}
-.doc-card h3{font-size:1.4rem;margin-bottom:2px}
-.doc-card .doc-title{color:var(--crimson);font-weight:600;font-size:.95rem;margin-bottom:14px}
-.doc-card ul{list-style:none;display:grid;gap:8px}
-.doc-card ul li{display:flex;gap:10px;font-size:.94rem;color:var(--ink-soft)}
-.doc-card ul li::before{content:"—";color:var(--crimson);font-weight:700}
+.doc-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;position:relative}
+.doc-card h3{font-size:1.55rem;margin-bottom:0;letter-spacing:.02em;line-height:1.3}
+.doc-badge{display:inline-block;font-size:.78rem;font-weight:600;color:var(--crimson-deep);background:var(--crimson-soft);border:1px solid rgba(179,56,46,.22);padding:3px 11px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.spec-block{margin:16px 0 4px;padding:14px 16px 15px;background:var(--crimson-soft);border:1px solid rgba(179,56,46,.14);border-radius:14px;position:relative}
+.spec-label{font-size:.76rem;font-weight:700;letter-spacing:.12em;color:var(--crimson-deep);margin-bottom:9px}
+.spec-chips{display:flex;flex-wrap:wrap;gap:7px}
+.spec-chip{font-size:.84rem;font-weight:600;color:var(--ink);background:#fff;border:1px solid rgba(179,56,46,.2);padding:4px 12px;border-radius:999px;white-space:nowrap}
+.doc-card ul{list-style:none;display:grid;gap:7px;margin-top:14px}
+.doc-card ul li{display:flex;gap:10px;font-size:.9rem;color:var(--ink-soft);line-height:1.75}
+.doc-card ul li::before{content:"—";color:var(--crimson);font-weight:700;flex:none}
+.doc-foot{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:.92rem;color:var(--ink-soft);line-height:1.9;position:relative}
+.doc-foot strong{color:var(--crimson-deep)}
+/* 首屏快捷入口 */
+.quick-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:20px}
+.quick-links .ql-label{font-size:.82rem;color:var(--ink-soft);margin-right:2px}
+.quick-links a{font-size:.86rem;font-weight:600;color:var(--ink-soft);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:999px;transition:color .22s,border-color .22s,background .22s,transform .22s}
+.quick-links a:hover{color:var(--crimson);border-color:var(--crimson);background:var(--crimson-soft);transform:translateY(-1px)}
+.quick-links a:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
+/* 数据条脚注 */
+.stats-note{margin-top:12px;font-size:.78rem;color:var(--ink-soft);opacity:.85}
 /* 数据条 */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
 @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
@@ -356,19 +365,38 @@ footer ul{list-style:none}
         <a class="btn btn-primary" href="#diseases">开始了解心血管疾病</a>
         <a class="btn btn-ghost" href="#kitchen">直达护心食谱</a>
       </div>
+      <div class="quick-links" aria-label="首屏快捷入口">
+        <span class="ql-label">直接前往</span>
+        <a href="#diseases">疾病科普</a>
+        <a href="#prevent">预防保健</a>
+        <a href="#diet">饮食营养</a>
+        <a href="#kitchen">护心厨房</a>
+        <a href="#sport">科学运动</a>
+        <a href="#faq">常见问答</a>
+      </div>
     </div>
     <div class="doc-card card" id="about">
-      <div class="doc-avatar">孟</div>
-      <h3>孟自力</h3>
-      <div class="doc-title">心血管病专家 · 主任医师</div>
+      <div class="doc-head">
+        <h3>孟自力</h3>
+        <span class="doc-badge">主任医师 · 心血管病专家</span>
+      </div>
+      <div class="spec-block">
+        <div class="spec-label">擅长 · 专注领域</div>
+        <div class="spec-chips">
+          <span class="spec-chip">卵圆孔未闭（PFO）</span>
+          <span class="spec-chip">心脏瓣膜病</span>
+          <span class="spec-chip">冠心病</span>
+          <span class="spec-chip">先天性心脏病</span>
+          <span class="spec-chip">大血管疾病</span>
+        </div>
+      </div>
       <ul>
         <li>长期从事心血管疾病临床诊疗工作，擅长常见及疑难心血管疾病的诊断与治疗</li>
-        <li>专注领域：卵圆孔未闭（PFO）相关卒中与偏头痛、心脏瓣膜病、冠心病、先天性心脏病、主动脉及大血管疾病</li>
         <li>坚持临床与科普并重，致力于把专业医学知识转化为大众听得懂、用得上的健康行动</li>
       </ul>
-      <div style="margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:.92rem;color:var(--ink-soft);line-height:1.9">
-        <div><strong style="color:var(--crimson-deep)">出诊时间：</strong>周二全天 · 周五上午</div>
-        <div><strong style="color:var(--crimson-deep)">微信公众号：</strong>心血管前沿（请于微信 App 内搜索名称关注）</div>
+      <div class="doc-foot">
+        <div><strong>出诊时间：</strong>周二全天 · 周五上午</div>
+        <div><strong>微信公众号：</strong>心血管前沿（请于微信 App 内搜索名称关注）</div>
       </div>
     </div>
   </div>
@@ -379,6 +407,7 @@ footer ul{list-style:none}
       <div class="stat"><b>80%</b><span>的心血管病可通过健康生活方式预防</span></div>
       <div class="stat"><b>5g/日</b><span>推荐食盐摄入上限（约一啤酒瓶盖）</span></div>
     </div>
+    <p class="stats-note">* 数据引自公开流行病学资料，仅供理解疾病负担参考；个体预防请以医生评估与生活方式建议为准。</p>
   </div>
 </section>
 
