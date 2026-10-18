@@ -1316,6 +1316,61 @@ footer ul{list-style:none}
   </div>
 </section>
 
+<!-- ================= 读者互动（云就绪 / 本地兜底） ================= -->
+<section id="interact" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <style>
+    .interact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px}
+    @media(max-width:900px){.interact-grid{grid-template-columns:1fr}}
+    .panel{display:flex;flex-direction:column;gap:14px}
+    .msg-form{display:flex;flex-direction:column;gap:10px}
+    .msg-form input,.msg-form textarea{padding:11px 13px;border:1px solid var(--line);border-radius:12px;font:inherit;background:var(--paper);resize:vertical}
+    .msg-list{display:flex;flex-direction:column;gap:12px;max-height:360px;overflow:auto;padding-right:4px}
+    .msg-item{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card)}
+    .msg-item .mi-head{display:flex;justify-content:space-between;gap:12px;font-size:.82rem;color:var(--ink-soft);margin-bottom:4px}
+    .msg-item .mi-name{color:var(--crimson);font-weight:600}
+    .msg-empty{color:var(--ink-soft);font-size:.92rem}
+    .ai-box{display:flex;flex-direction:column;gap:10px}
+    .ai-box textarea{min-height:84px;padding:11px 13px;border:1px solid var(--line);border-radius:12px;font:inherit;background:var(--paper);resize:vertical}
+    .ai-answer{border:1px dashed var(--line);border-radius:12px;padding:12px 14px;background:var(--paper);min-height:60px;white-space:pre-wrap;font-size:.96rem;line-height:1.7}
+    .ai-answer.placeholder{color:var(--ink-soft)}
+    .mode-pill{font-size:.72rem;padding:3px 10px;border-radius:999px;background:var(--crimson-soft);color:var(--crimson-deep);align-self:flex-start}
+    .mode-pill.cloud{background:#e7f0ea;color:#2f6b46}
+    .err{color:var(--red-flag);font-size:.9rem}
+    .ok{color:var(--green);font-size:.9rem}
+  </style>
+  <div class="wrap">
+    <span class="eyebrow">读者互动 · 云端就绪</span>
+    <h2 class="sec-title">留言咨询 &amp; AI 智能问答</h2>
+    <p class="sec-sub">读者可在此留言、向医生提问；也可用 AI 助手快速了解心血管健康常识。所有内容仅供健康科普，不构成诊疗建议，急症请立即拨打 120。</p>
+    <div class="interact-grid">
+      <!-- 留言板 -->
+      <div class="panel">
+        <span class="mode-pill" id="msgMode">本地模式</span>
+        <h3 style="font-size:1.1rem">读者留言板</h3>
+        <form class="msg-form" id="msgForm">
+          <input type="text" id="msgName" maxlength="20" placeholder="您的称呼（可选）" autocomplete="name">
+          <textarea id="msgContent" rows="3" maxlength="500" placeholder="想对孟医生说的话，或您的健康疑问…" required></textarea>
+          <button type="submit" class="btn btn-primary" id="msgSubmit">提交留言</button>
+          <span class="err" id="msgErr" hidden></span>
+          <span class="ok" id="msgOk" hidden></span>
+        </form>
+        <div class="msg-list" id="msgList"></div>
+      </div>
+      <!-- AI 问答 -->
+      <div class="panel">
+        <span class="mode-pill" id="aiMode">本地模式</span>
+        <h3 style="font-size:1.1rem">AI 智能问答</h3>
+        <div class="ai-box">
+          <textarea id="aiQuestion" rows="3" maxlength="300" placeholder="例如：血压高平时饮食要注意什么？"></textarea>
+          <button class="btn btn-primary" id="aiAsk" type="button">问问 AI</button>
+          <div class="ai-answer placeholder" id="aiAnswer">AI 解答将显示在这里。</div>
+          <span class="err" id="aiErr" hidden></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= 博客精选 ================= -->
 <section id="blog" style="background:var(--paper)">
   <style>
@@ -1412,8 +1467,9 @@ footer ul{list-style:none}
     </div>
     <div>
       <h4>关注与出诊</h4>
-      <p>微信公众号：<strong>心血管前沿</strong>（请在微信 App 内搜索名称关注，获取更多科普与讲座）。</p>
-      <p style="margin-top:8px">出诊时间：周二全天 · 周五上午</p>
+      <p>在以下平台找到我，科普内容同步更新：</p>
+      <div data-social-links></div>
+      <p style="margin-top:12px">出诊时间：周二全天 · 周五上午</p>
     </div>
   </div>
   <div class="wrap">
@@ -1480,5 +1536,20 @@ window.addEventListener('scroll', function(){
 });
 toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 </script>
+
+<!-- 云服务 SDK（CDN 形式，适配纯静态站点）；未开通时由 interactions.js 自动降级为本地 -->
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script>
+  /* 云服务配置占位：开通真实云服务、拿到 publicConfig 后，将下面这行替换为真实配置，
+     留言与 AI 即自动从本地切换为云端（无需改动业务逻辑）。
+     window.WORKBUDDY_CLOUD_CONFIG = {
+       endpoint: "https://<your-domain>/<app-id>",
+       publishableKey: "<your-publishable-key>",
+       oauthRelayBaseUrl: "https://<relay-base>"
+     }; */
+  window.WORKBUDDY_CLOUD_CONFIG = null;
+</script>
+<script src="assets/js/interactions.js"></script>
+<script src="assets/js/social-links.js"></script>
 </body>
 </html>
