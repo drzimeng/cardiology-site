@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RevMan 5.4 非 Cochrane 模式建库操作指引 | 孟自力 · 科研工具</title>
+<meta name="description" content="RevMan 5.4 离线本地建库与 Meta 分析完整操作指引：从首次启动、录入研究、构建比较与结局，到数据录入、森林图导出与偏倚风险图，逐步图解。面向医学科研工作者。">
+<style>
+  :root{
+    --ink:#2b2b2f; --ink-soft:#5c5c66; --line:#e8e2da; --bg:#faf8f5;
+    --card:#ffffff; --brand:#b3382e; --brand-soft:#f7ebe9; --brand-line:#eccbc6;
+    --teal:#0f766e; --teal-soft:#e6f5f2; --amber:#b45309; --amber-soft:#fdf3e2;
+    --red:#b3382e; --red-soft:#fbeaea; --code-bg:#f5f1ef; --shadow:0 1px 3px rgba(120,40,30,.08);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    line-height:1.75;font-size:15px;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px 80px;}
+
+  /* site nav */
+  .sitenav{position:sticky;top:0;z-index:200;background:rgba(250,248,245,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  .sn-inner{max-width:1000px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .sn-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;white-space:nowrap;}
+  .sn-brand small{display:block;font-size:.64rem;color:var(--ink-soft);font-weight:500;letter-spacing:.16em;}
+  .sn-links{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto;}
+  .sn-links a{font-size:.88rem;padding:6px 12px;border-radius:999px;color:var(--ink-soft);text-decoration:none;transition:all .25s;}
+  .sn-links a:hover{color:var(--brand);background:var(--brand-soft);}
+  .sn-links a.cur{color:#fff;background:var(--brand);}
+  @media(max-width:720px){.sn-inner{padding:8px 16px;}.sn-links{margin-left:0;}}
+
+  /* Header */
+  header{background:linear-gradient(135deg,#b3382e,#8c2620);color:#fff;padding:48px 24px 40px;margin-bottom:0;}
+  .hd-inner{max-width:1000px;margin:0 auto;}
+  header .kicker{font-size:13px;letter-spacing:2px;opacity:.85;margin:0 0 10px;}
+  header h1{margin:0;font-size:30px;line-height:1.35;font-weight:700;}
+  header .sub{margin:14px 0 0;font-size:15px;opacity:.92;max-width:760px;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .meta-row span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);
+    padding:5px 12px;border-radius:20px;font-size:12.5px;}
+
+  /* Intro notice */
+  .notice{background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:12px;
+    padding:16px 20px;margin:28px 0 8px;font-size:14px;color:var(--ink-soft);}
+  .notice b{color:var(--brand);}
+
+  /* TOC */
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:20px 24px;margin:24px 0 34px;box-shadow:var(--shadow);}
+  nav.toc h2{margin:0 0 12px;font-size:16px;color:var(--brand);}
+  nav.toc ol{margin:0;padding-left:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 28px;}
+  nav.toc a{color:var(--ink-soft);text-decoration:none;font-size:14px;}
+  nav.toc a:hover{color:var(--brand);}
+  nav.toc a .n{display:inline-block;width:22px;color:var(--brand);font-weight:600;}
+
+  /* Sections */
+  section{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:26px 28px;margin:0 0 20px;box-shadow:var(--shadow);}
+  section h2{margin:0 0 4px;font-size:21px;color:var(--ink);
+    display:flex;align-items:center;gap:12px;}
+  section h2 .badge{background:var(--brand);color:#fff;font-size:14px;width:30px;height:30px;
+    border-radius:8px;display:inline-flex;align-items:center;justify-content:center;flex:none;font-weight:700;}
+  section h2 .time{margin-left:auto;font-size:12px;color:var(--ink-soft);background:var(--bg);
+    border:1px solid var(--line);padding:3px 10px;border-radius:20px;font-weight:400;white-space:nowrap;}
+  .lead{color:var(--ink-soft);margin:10px 0 20px;font-size:14.5px;}
+
+  /* Steps */
+  .step{display:flex;gap:14px;padding:14px 0;border-top:1px dashed var(--line);}
+  .step:first-of-type{border-top:none;}
+  .step .num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--teal-soft);
+    color:var(--teal);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+  .step .body{flex:1;}
+  .step .body p{margin:0 0 6px;}
+  .step .body p:last-child{margin-bottom:0;}
+
+  /* inline code & paths */
+  code{background:var(--code-bg);color:#8c2620;padding:2px 6px;border-radius:5px;
+    font-family:"SF Mono",Menlo,Consolas,monospace;font-size:12.8px;}
+  .path{display:inline-block;background:var(--code-bg);border:1px solid var(--line);
+    padding:2px 7px;border-radius:5px;font-family:"SF Mono",Menlo,monospace;font-size:12.5px;color:#8c2620;}
+  kbd{background:#fff;border:1px solid #cbd5e1;border-bottom-width:2px;border-radius:4px;
+    padding:1px 6px;font-size:12px;font-family:inherit;}
+
+  /* callouts */
+  .box{border-radius:10px;padding:13px 16px;margin:14px 0;font-size:14px;border:1px solid;}
+  .box .t{font-weight:700;margin-right:6px;}
+  .box.tip{background:var(--teal-soft);border-color:#b7e0d9;color:#0b5b54;}
+  .box.warn{background:var(--amber-soft);border-color:#f0d6a8;color:#8a4b06;}
+  .box.note{background:var(--brand-soft);border-color:var(--brand-line);color:#8c2620;}
+  .box.danger{background:var(--red-soft);border-color:#eccaca;color:#933030;}
+  .box ul{margin:8px 0 0;padding-left:20px;}
+  .box li{margin:3px 0;}
+
+  /* table */
+  table{border-collapse:collapse;width:100%;margin:16px 0;font-size:13.5px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;}
+  th{background:var(--brand-soft);color:#8c2620;font-weight:600;}
+  tr:nth-child(even) td{background:#fafbfd;}
+  td code{font-size:12px;}
+  .caption{font-size:12.5px;color:var(--ink-soft);margin-top:-8px;margin-bottom:16px;}
+
+  /* figure flow */
+  .flow{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:18px;margin:16px 0;}
+  .flow svg{display:block;width:100%;height:auto;}
+
+  /* two col */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
+  .card2{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fcfdff;}
+  .card2 h4{margin:0 0 8px;font-size:14.5px;color:var(--brand);}
+  .card2 ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);}
+  .card2 li{margin:3px 0;}
+
+  /* FAQ */
+  details{border:1px solid var(--line);border-radius:9px;margin:10px 0;background:#fcfdff;}
+  details summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--ink);font-size:14.5px;}
+  details .ans{padding:0 16px 14px;color:var(--ink-soft);font-size:14px;border-top:1px solid var(--line);margin-top:0;}
+  details .ans p{margin:10px 0 0;}
+
+  hr{border:none;border-top:1px solid var(--line);margin:26px 0;}
+  footer{text-align:center;color:var(--ink-soft);font-size:12.5px;padding:24px 12px 0;}
+
+  @media(max-width:720px){
+    nav.toc ol,.grid2{grid-template-columns:1fr;}
+    section{padding:20px 18px;}
+    header h1{font-size:24px;}
+    section h2 .time{display:none;}
+  }
+  @media print{
+    body{background:#fff;font-size:12px;}
+    header{background:#b3382e !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    section,nav.toc{box-shadow:none;border-color:#ccc;page-break-inside:avoid;}
+    .box,.card2,table th{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    nav.toc{display:none;}
+    section h2{font-size:17px;}
+  }
+</style>
+</head>
+<body>
+<nav class="sitenav" aria-label="站点导航">
+  <div class="sn-inner">
+    <a href="../index.html" class="sn-brand">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z" fill="#b3382e"/><path d="M3.5 12h3l1.5-3 2.5 6 2-4.5 1.5 2.5h4" stroke="#faf8f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <span>孟自力<small>心血管健康科普</small></span>
+    </a>
+    <div class="sn-links">
+      <a href="../index.html">科普主页</a>
+      <a href="../blog/">医生博客</a>
+      <a href="../blog/#/post/revman-5.4-guide">博客导读</a>
+      <a href="#" class="cur">RevMan 指引</a>
+    </div>
+  </div>
+</nav>
+
+
+<header>
+  <div class="hd-inner">
+    <p class="kicker">孟自力 · 心血管健康科普 ｜ 科研工具 · COCHRANE REVIEW MANAGER 5.4.1</p>
+    <h1>RevMan 5.4 非 Cochrane 模式<br>建库与 Meta 分析操作指引</h1>
+    <p class="sub">面向未加入 Cochrane 协作网、仅需在本地独立完成系统评价 / Meta 分析的研究者。全文按软件真实界面术语编写，从首次启动到导出森林图逐步讲解。</p>
+    <div class="meta-row">
+      <span>软件版本：Review Manager 5.4.1</span>
+      <span>适用系统：macOS（含 Apple 芯片）</span>
+      <span>模式：non-Cochrane（离线本地）</span>
+      <span>预计通读 + 实操：约 60–90 分钟</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="notice">
+    <b>关于「非 Cochrane 模式」：</b>它是 RevMan 5 内置的一种本地工作模式，无需 Cochrane 账号或机构许可，所有数据保存在本机的 <code>.rm5</code> 文件中，可正常完成数据录入、Meta 计算与图形输出。代价是：不能向 Cochrane Library 提交、无在线协作与模板库。对于撰写普通（非 Cochrane）系统评价，本模式完全够用。
+  </div>
+
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s0"><span class="n">00</span>首次启动与模式设置</a></li>
+      <li><a href="#s1"><span class="n">01</span>工作流总览</a></li>
+      <li><a href="#s2"><span class="n">02</span>新建综述文件</a></li>
+      <li><a href="#s3"><span class="n">03</span>认识主界面</a></li>
+      <li><a href="#s4"><span class="n">04</span>录入纳入研究</a></li>
+      <li><a href="#s5"><span class="n">05</span>构建比较与结局</a></li>
+      <li><a href="#s6"><span class="n">06</span>添加并录入数据</a></li>
+      <li><a href="#s7"><span class="n">07</span>生成与导出森林图</a></li>
+      <li><a href="#s8"><span class="n">08</span>偏倚风险图与漏斗图</a></li>
+      <li><a href="#s9"><span class="n">09</span>保存、备份与核查</a></li>
+      <li><a href="#s10"><span class="n">10</span>统计要点与数据规范</a></li>
+      <li><a href="#s11"><span class="n">11</span>常见问题排查</a></li>
+    </ol>
+  </nav>
+
+  <!-- 00 -->
+  <section id="s0">
+    <h2><span class="badge">00</span>首次启动与模式设置<span class="time">约 5 分钟</span></h2>
+    <p class="lead">第一次打开软件时，需要依次处理三个弹窗。这一步决定后续能否离线顺畅使用。</p>
+
+    <div class="step"><div class="num">1</div><div class="body">
+      <p><b>启动软件。</b>在 <span class="path">/Applications/RevMan/Review Manager 5.4.app</span> 双击打开；首次加载 Java 运行环境较慢，等待数秒属正常。</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div class="body">
+      <p><b>Usage mode（使用模式）对话框 → 选择 “non-Cochrane mode”。</b></p>
+      <p>只有首次启动才会出现。两个选项的含义：</p>
+      <ul>
+        <li><code>Cochrane mode</code>：需注册账号与许可证、连接 Cochrane 服务器——<b>本场景不选</b>。</li>
+        <li><code>non-Cochrane mode</code>：本地离线使用，无需登录——<b>选择此项</b>。</li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="num">3</div><div class="body">
+      <p><b>Update Available（更新提示）→ 选择 “No / 暂不更新”。</b>当前网络无法访问 Cochrane 更新服务器，跳过即可，不影响任何本地功能。</p>
+    </div></div>
+    <div class="step"><div class="num">4</div><div class="body">
+      <p><b>Welcome to Review Manager 5 界面 → 点击 “Create a new review”。</b>进入新建向导（详见第 02 节）。</p>
+    </div></div>
+
+    <div class="box tip"><span class="t">建议 · 切换中文界面</span>
+      菜单 <code>Tools › Preferences</code>，在 <code>General</code> / <code>Interface</code> 选项卡中找到 <code>Language</code> 下拉框，选择 <b>Chinese (Simplified)</b>，保存后重启软件即全面汉化。本指引保留英文术语，便于对照原始界面与英文文献。
+    </div>
+    <div class="box note"><span class="t">Mac 操作提示</span>
+      手册中的“右键”在 Mac 上为 <kbd>Control</kbd>+单击，或触控板双指点按；如需右键菜单，请以此方式操作。
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section id="s1">
+    <h2><span class="badge">01</span>工作流总览<span class="time">约 2 分钟</span></h2>
+    <p class="lead">建库本质是沿着左侧大纲树自上而下填充内容。核心链路只有一条，记住这条主线即可：</p>
+    <div class="flow">
+      <svg viewBox="0 0 920 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RevMan 建库流程图">
+        <defs>
+          <marker id="ar" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#b3382e"/>
+          </marker>
+          <style>
+            .b{fill:#f7ebe9;stroke:#eccbc6;stroke-width:1.5;}
+            .t{font-family:-apple-system,"PingFang SC",sans-serif;font-size:13px;fill:#1f2733;}
+            .tn{font-family:-apple-system,sans-serif;font-size:11px;fill:#b3382e;}
+            .l{stroke:#b3382e;stroke-width:1.8;marker-end:url(#ar);}
+          </style>
+        </defs>
+        <!-- row 1 -->
+        <g>
+          <rect class="b" x="10"  y="30" width="140" height="56" rx="9"/>
+          <rect class="b" x="175" y="30" width="140" height="56" rx="9"/>
+          <rect class="b" x="340" y="30" width="140" height="56" rx="9"/>
+          <rect class="b" x="505" y="30" width="140" height="56" rx="9"/>
+          <rect class="b" x="670" y="30" width="140" height="56" rx="9"/>
+          <text class="tn" x="22"  y="48">STEP 1</text><text class="t" x="22"  y="68">新建综述</text>
+          <text class="tn" x="187" y="48">STEP 2</text><text class="t" x="187" y="68">录入研究</text>
+          <text class="tn" x="352" y="48">STEP 3</text><text class="t" x="352" y="68">建比较 + 结局</text>
+          <text class="tn" x="517" y="48">STEP 4</text><text class="t" x="517" y="68">录数据</text>
+          <text class="tn" x="682" y="48">STEP 5</text><text class="t" x="682" y="68">出森林图</text>
+          <line class="l" x1="150" y1="58" x2="173" y2="58"/>
+          <line class="l" x1="315" y1="58" x2="338" y2="58"/>
+          <line class="l" x1="480" y1="58" x2="503" y2="58"/>
+          <line class="l" x1="645" y1="58" x2="668" y2="58"/>
+        </g>
+        <!-- row 2 (down and back) -->
+        <path class="l" d="M810,86 L810,150 L110,150 L110,166" fill="none"/>
+        <g>
+          <rect class="b" x="40"  y="166" width="150" height="56" rx="9"/>
+          <rect class="b" x="230" y="166" width="150" height="56" rx="9"/>
+          <rect class="b" x="420" y="166" width="150" height="56" rx="9"/>
+          <rect class="b" x="610" y="166" width="150" height="56" rx="9"/>
+          <text class="tn" x="52"  y="184">STEP 6</text><text class="t" x="52"  y="204">偏倚风险图</text>
+          <text class="tn" x="242" y="184">STEP 7</text><text class="t" x="242" y="204">亚组 / 敏感性</text>
+          <text class="tn" x="432" y="184">STEP 8</text><text class="t" x="432" y="204">核对与保存</text>
+          <text class="tn" x="622" y="184">STEP 9</text><text class="t" x="622" y="204">导出图片</text>
+          <line class="l" x1="190" y1="194" x2="228" y2="194"/>
+          <line class="l" x1="380" y1="194" x2="418" y2="194"/>
+          <line class="l" x1="570" y1="194" x2="608" y2="194"/>
+        </g>
+      </svg>
+    </div>
+    <div class="box tip"><span class="t">核心原则</span>
+      「研究（Study）」必须先进入 <code>Included studies</code>，才能在「比较—结局」中被勾选用于分析；「结局（Outcome）」的数据类型一旦选定并录入数据，中途更换数据类型会清空已录数据。因此建议先定好分析框架再录数。
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section id="s2">
+    <h2><span class="badge">02</span>新建综述文件<span class="time">约 5 分钟</span></h2>
+    <p class="lead">通过 New Review Wizard（新建综述向导）建立文件骨架。</p>
+    <div class="step"><div class="num">1</div><div class="body">
+      <p>菜单 <code>File › New</code>，或点击工具栏 <b>New</b> 按钮，打开 <code>New Review Wizard</code>。</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div class="body">
+      <p><b>选择综述类型。</b>常用四种，按需选择：</p>
+      <table>
+        <tr><th>类型</th><th>适用场景</th></tr>
+        <tr><td><code>Intervention review</code> 干预性综述</td><td><b>最常用</b>。比较两种干预（如封堵器 vs 药物），二分类 / 连续变量 Meta 分析均选此项。</td></tr>
+        <tr><td><code>Diagnostic test accuracy</code> 诊断准确性</td><td>评价某诊断试验的敏感度、特异度等。</td></tr>
+        <tr><td><code>Methodology review</code> 方法学综述</td><td>研究方法学问题。</td></tr>
+        <tr><td><code>Overview of reviews</code> 综述的综述</td><td>对已有系统评价再综合。</td></tr>
+      </table>
+    </div></div>
+    <div class="step"><div class="num">3</div><div class="body">
+      <p><b>填写 Title（标题）、Authors（作者）等基本信息</b>，这些信息会用于文内与导出图表的引用。</p>
+    </div></div>
+    <div class="step"><div class="num">4</div><div class="body">
+      <p><b>选择 <code>Full review</code>（完整综述），不要选 <code>Protocol</code>。</b>Proto­col（方案）状态下统计计算功能不可用，无法生成森林图。</p>
+    </div></div>
+    <div class="step"><div class="num">5</div><div class="body">
+      <p>点击 <b>Finish</b>，得到一个带完整章节骨架的综述文件。</p>
+    </div></div>
+    <div class="box warn"><span class="t">注意</span>
+      在 RevMan 内新建的综述并非 Cochrane 官方模板，日后<b>不能</b>不经大量改写就直接投稿为 Cochrane Review。这一点对非 Cochrane 模式的普通系统评价无影响。
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section id="s3">
+    <h2><span class="badge">03</span>认识主界面<span class="time">约 3 分钟</span></h2>
+    <p class="lead">打开文件后为三栏式布局，后续所有操作都围绕左侧大纲树展开。</p>
+    <div class="grid2">
+      <div class="card2"><h4>① 顶部菜单栏</h4>
+        <ul><li><code>File</code>：新建 / 打开 / 保存 / 导入导出</li><li><code>Edit</code>、<code>View</code>、<code>Tools</code>：偏好设置等</li><li><code>Help</code>：内置手册、教程、计算器</li></ul>
+      </div>
+      <div class="card2"><h4>② 左侧大纲面板（Outline）</h4>
+        <ul><li>树状结构：Main Text、Tables、<b>Studies and references</b>、<b>Data and analyses</b>、Figures 等</li><li>点小钥匙图标展开下级；右键节点弹出新增菜单</li></ul>
+      </div>
+      <div class="card2"><h4>③ 中部内容面板（Content）</h4>
+        <ul><li>显示当前选中章节的正文或数据表</li><li>数据表标签内可粘贴数据，森林图实时联动更新</li></ul>
+      </div>
+      <div class="card2"><h4>④ 常用工具栏按钮</h4>
+        <ul><li><b>Add</b>（绿色 +）：新增节点</li><li><b>Edit Outcome</b>：打开结局数据表</li><li><b>Forest Plot</b>：弹出森林图窗口</li><li><b>Funnel Plot</b>：漏斗图</li></ul>
+      </div>
+    </div>
+    <div class="box note"><span class="t">正文区结构</span>
+      <code>Main Text</code> 下的 Background、Objectives、Methods、Results、Discussion 等章节是系统评价的撰写框架，可直接在右侧填写文字；它们与统计分析相互独立，但结果章节可一键插入分析产生的数值与图。
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="s4">
+    <h2><span class="badge">04</span>录入纳入研究<span class="time">约 10–20 分钟</span></h2>
+    <p class="lead">先把所有纳入研究的“身份”建好，后续分析才能引用它们。</p>
+    <div class="step"><div class="num">1</div><div class="body">
+      <p>在左侧依次展开 <span class="path">Studies and references › References to studies › Included studies</span>。</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div class="body">
+      <p>右键点击 <b>Included studies</b>，选择 <code>Add Study</code>，打开 <code>New Study Wizard</code>。</p>
+    </div></div>
+    <div class="step"><div class="num">3</div><div class="body">
+      <p>填写 <b>Study ID</b>，命名规则为「第一作者姓氏 + 发表年份」，如 <code>Liu 2021</code>、<code>Zhang 2023</code>。点 <b>Next</b> 可补充来源、年份等完整信息，直接 <b>Finish</b> 亦可。</p>
+    </div></div>
+    <div class="step"><div class="num">4</div><div class="body">
+      <p>重复添加全部研究。若点 <b>Next</b> 到最后一步，勾选 <code>Add another study in the same section</code> 可连续录入多篇。</p>
+    </div></div>
+    <div class="step"><div class="num">5</div><div class="body">
+      <p>（可选）从 EndNote 等文献管理器导出 RIS 后批量导入：<code>right-click References to studies › Import References</code>。</p>
+    </div></div>
+    <div class="box tip"><span class="t">命名一致性</span>
+      Study ID 一旦确定，全文（数据表、森林图、偏倚图）统一引用该 ID。建议提前在 Excel 中固定好研究清单与顺序，避免后期“张冠李戴”。
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="s5">
+    <h2><span class="badge">05</span>构建比较与结局<span class="time">约 15–25 分钟</span></h2>
+    <p class="lead">这是决定统计分析框架的关键一步：先建“比较”，再在比较下建“结局”，结构最多三层（比较 → 结局 → 亚组）。</p>
+
+    <h3 style="font-size:16px;color:#8c2620;margin:18px 0 2px;">5.1 添加比较 Comparison</h3>
+    <div class="step"><div class="num">1</div><div class="body">
+      <p>右键左侧 <b>Data and analyses</b> → <code>Add Comparison</code> → 输入名称（如 <code>Occluder vs Control</code>）→ <b>Finish</b>。</p>
+    </div></div>
+
+    <h3 style="font-size:16px;color:#8c2620;margin:18px 0 2px;">5.2 添加结局 Outcome</h3>
+    <div class="step"><div class="num">2</div><div class="body">
+      <p>右键刚建好的比较 → <code>Add Outcome</code>，打开 <code>New Outcome Wizard</code>。</p>
+    </div></div>
+    <div class="step"><div class="num">3</div><div class="body">
+      <p><b>选数据类型（Data type）：</b></p>
+      <table>
+        <tr><th>类型</th><th>含义 / 需准备的数据</th><th>举例</th></tr>
+        <tr><td><code>Dichotomous</code> 二分类</td><td>每组的<b>事件数 + 总人数</b></td><td>死亡/存活、发生/未发生并发症</td></tr>
+        <tr><td><code>Continuous</code> 连续</td><td>每组的<b>均数 + 标准差 + 例数</b></td><td>血压、评分、随访时间</td></tr>
+        <tr><td><code>O-E and Variance</code></td><td>已算好的观察−期望值及方差</td><td>从生存曲线提取</td></tr>
+        <tr><td><code>Generic Inverse Variance</code></td><td>已算好的效应量及其标准误</td><td>文献直接报告 HR 及 95%CI</td></tr>
+        <tr><td><code>Other Data</code></td><td>自由文本表格</td><td>无法进行 Meta 的展示性数据</td></tr>
+      </table>
+    </div></div>
+    <div class="step"><div class="num">4</div><div class="body">
+      <p>依次填写 <b>Name（结局名称）</b> → <b>Group Labels（组标签，默认 Experimental / Control）</b> → <b>Analysis Method（统计方法、模型、效应量）</b> → <b>Analysis Details</b> → <b>Graph details</b> → Finish。</p>
+    </div></div>
+
+    <h3 style="font-size:16px;color:#8c2620;margin:18px 0 2px;">5.3 关键设置对照</h3>
+    <table>
+      <tr><th>设置项</th><th>二分类结局</th><th>连续型结局</th></tr>
+      <tr><td>Statistical Method<br>统计方法</td><td><code>Mantel-Haenszel</code>（最常用）</td><td><code>Inverse Variance</code></td></tr>
+      <tr><td>Effect Measure<br>效应量</td><td><code>RR</code> 风险比 / <code>OR</code> 比值比 / <code>RD</code> 风险差</td><td><code>MD</code> 均数差 / <code>SMD</code> 标准化均数差</td></tr>
+      <tr><td>Analysis Model<br>分析模型</td><td colspan="2"><code>Fixed effect</code> 固定效应；<code>Random effects</code> 随机效应（异质性较大时选用）</td></tr>
+      <tr><td>Graph Label<br>森林图横轴标签</td><td colspan="2">Left / Right Graph Label，默认 “Favours experimental / Favours control”。<b>若“事件发生”代表有利结局，务必将左右标签对调</b>，否则森林图方向解读会出错。</td></tr>
+    </table>
+    <div class="box danger"><span class="t">高频错误</span>
+      当结局是“有利事件”（如缓解、成功封堵）时，须把横轴左侧改为 <code>Favours control</code>、右侧改为 <code>Favours experimental</code>；沿用默认标签会使图形方向与实际结论相反。
+    </div>
+    <div class="box tip"><span class="t">亚组</span>
+      如需预设亚组分析，右键某个 outcome → <code>Add Subgroup</code>，再把研究加入亚组。注意：一个结局下“要么直接挂研究，要么挂亚组”，二者不可并存；已挂研究时可用 <code>Introduce Subgroup</code> 转换。
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="s6">
+    <h2><span class="badge">06</span>添加并录入数据<span class="time">约 15–30 分钟</span></h2>
+    <p class="lead">两步走：先把研究“挂”到结局下，再从 Excel 整块粘贴数据。</p>
+
+    <h3 style="font-size:16px;color:#8c2620;margin:18px 0 2px;">6.1 把研究加入分析</h3>
+    <div class="step"><div class="num">1</div><div class="body">
+      <p>右键 outcome（或 subgroup）→ <code>Add Study Data</code> → 在 <code>New Study Data Wizard</code> 中勾选需要的研究 → Finish。</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div class="body">
+      <p>点击该 outcome，再点工具栏 <b>Edit Outcome</b>，打开数据表标签（Data table）；表中已列出刚勾选的研究，右侧森林图随录入实时更新。</p>
+    </div></div>
+
+    <h3 style="font-size:16px;color:#8c2620;margin:18px 0 2px;">6.2 Excel 数据准备与粘贴</h3>
+    <div class="step"><div class="num">3</div><div class="body">
+      <p>在 Excel 中按下列<b>严格列序</b>整理（每行一项研究，顺序与 RevMan 数据表一致）：</p>
+      <table>
+        <tr><th>二分类（Dichotomous）</th><th>连续型（Continuous）</th></tr>
+        <td>
+          <code>Study</code>｜<code>E1 事件</code>｜<code>N1 总数</code>｜<code>E2 事件</code>｜<code>N2 总数</code>
+        </td>
+        <td>
+          <code>Study</code>｜<code>Mean1</code>｜<code>SD1</code>｜<code>N1</code>｜<code>Mean2</code>｜<code>SD2</code>｜<code>N2</code>
+        </td>
+      </table>
+      <p class="caption">1 = 试验组（Experimental），2 = 对照组（Control）。切勿把实验组与对照组列序颠倒，或把 SD 与 N 错位。</p>
+    </div></div>
+    <div class="step"><div class="num">4</div><div class="body">
+      <p>在 Excel 选中数据区域复制 → 回到 RevMan 数据表，点击<b>目标区域左上角单元格</b> → 工具栏 <b>Paste</b>（或右键 Paste）。数据即整块填入。</p>
+    </div></div>
+    <div class="step"><div class="num">5</div><div class="body">
+      <p>若原始文献只报告<b>中位数与四分位距</b>或样本量不均衡，可用菜单 <code>Tools › Calculate data</code>（计算器）估算均数与标准差，再填入；绿色单元格表示输入有效，红色表示有误。</p>
+    </div></div>
+    <div class="box warn"><span class="t">数据完整性红线</span>
+      所有数值必须来自纳入文献原文，禁止为使结果“更好看”而编造、篡改或选择性剔除数据；由中位数推算或任何近似处理须在 Methods 中明确标注为“估算”；敏感性分析等探索性结果也须如实标注。这是科研诚信与投稿审稿的底线要求。
+    </div>
+    <div class="box note"><span class="t">零事件怎么办</span>
+      某组事件数为 0 时无需自行校正，RevMan 会按统计方法自动处理（必要时可查看 Analysis Details 中的相关选项）。
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="s7">
+    <h2><span class="badge">07</span>生成与导出森林图<span class="time">约 10 分钟</span></h2>
+    <p class="lead">数据表录入的同时森林图已在右侧生成，下面看细节调整与导出。</p>
+    <div class="step"><div class="num">1</div><div class="body">
+      <p>在 outcome 数据表标签点击 <b>Forest Plot</b> 按钮，图形在独立窗口打开。</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div class="body">
+      <p><b>调整横轴刻度：</b>拖动图下方的滑块（scale slider）。若某研究的可信区间超出坐标范围，图中会出现箭头，此时向右拉伸刻度直至箭头消失。</p>
+    </div></div>
+    <div class="step"><div class="num">3</div><div class="body">
+      <p><b>核查统计输出：</b>图下方给出合并效应量及 95%CI、<code>I²</code>（异质性）、Z 检验与 P 值。<code>I² &gt; 50%</code> 通常提示中高度异质性，应改选随机效应模型或做亚组 / 敏感性分析，并在正文解释来源。</p>
+    </div></div>
+    <div class="step"><div class="num">4</div><div class="body">
+      <p><b>导出图片：</b>在森林图窗口点击 <b>Save</b>，选择格式与路径。推荐优先矢量格式以便投稿排版：</p>
+      <ul>
+        <li>矢量（清晰可无损放大）：<code>SVG</code>、<code>EPS</code>、<code>PDF</code>、<code>EMF</code></li>
+        <li>位图（通用）：<code>PNG</code></li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="num">5</div><div class="body">
+      <p><b>纳入正文：</b>右键 <b>Figures</b> → <code>Add Figure</code> → 选择 <code>Forest plot</code> → 指定对应结局 → Finish。之后需在正文相应位置插入对该图的引用，图才会随综述一同输出。</p>
+    </div></div>
+    <div class="box tip"><span class="t">发表提示</span>
+      多数期刊要求黑白或灰度图，导出后可在矢量软件中统一转为黑白；同时核对图上 “Favours …” 标签与效应量方向一致（见第 05 节红色提示框）。
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section id="s8">
+    <h2><span class="badge">08</span>偏倚风险图与漏斗图<span class="time">约 15–20 分钟</span></h2>
+    <p class="lead">两项常用辅助图形，分别用于方法学质量评价与发表偏倚初筛。</p>
+
+    <h3 style="font-size:16px;color:#8c2620;margin:18px 0 2px;">8.1 偏倚风险图（Risk of Bias）</h3>
+    <div class="step"><div class="num">1</div><div class="body">
+      <p>先为每项研究填写 RoB 表：展开 <span class="path">Tables › Risk of bias tables</span>，或右键某研究 → <code>Edit Study characteristics</code>，在 <code>Risk of bias</code> 表内对 7 个条目作 Low / Unclear / High 判定。</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div class="body">
+      <p>右键左侧 <b>Figures</b> → <code>Add Figure</code> → 选择 <code>Risk of bias graph</code>（各条目分布条形图）或 <code>Risk of bias summary</code>（逐研究的红黄绿汇总表）→ Finish。</p>
+    </div></div>
+
+    <h3 style="font-size:16px;color:#8c2620;margin:18px 0 2px;">8.2 漏斗图（Funnel Plot）</h3>
+    <div class="step"><div class="num">3</div><div class="body">
+      <p>打开某结局的数据表 → 点击 <b>Funnel Plot</b> 按钮即可查看；如需随文发表，同样通过 <code>Add Figure</code> 加入 Figures 节点。</p>
+    </div></div>
+    <div class="box note"><span class="t">解读边界</span>
+      漏斗图仅作<b>对称性目测</b>的初筛；Egger 检验、Begg 检验等需借助 Stata / R（如 <code>metafor</code> 包）完成，RevMan 本身不提供。研究结果少于 10 项时，漏斗图检验效能很低，不宜据此下结论。
+    </div>
+
+    <h3 style="font-size:16px;color:#8c2620;margin:18px 0 2px;">8.3 敏感性分析</h3>
+    <div class="step"><div class="num">4</div><div class="body">
+      <p>在结局数据表中取消勾选某研究前的复选框，即可将其<b>暂时排除</b>出合并分析，用于逐一剔除法的稳健性检验；重新勾选即可恢复，不会删除数据。相关图表会自动更新。</p>
+    </div></div>
+  </section>
+
+  <!-- 09 -->
+  <section id="s9">
+    <h2><span class="badge">09</span>保存、备份与核查<span class="time">约 5 分钟</span></h2>
+    <div class="step"><div class="num">1</div><div class="body">
+      <p><b>保存：</b>任何修改即时生效于当前打开的文件；点工具栏 Save 手动保存为本地 <code>.rm5</code> 文件。软件默认<b>每 10 分钟自动备份一次</b>（可在 Tools › Preferences › General 中调整）。</p>
+    </div></div>
+    <div class="step"><div class="num">2</div><div class="body">
+      <p><b>版本管理：</b>建议在关键节点（建好框架、录完数据、出完图）另存不同版本文件名，例如 <code>PFO_meta_v1.rm5</code>、<code>v2.rm5</code>，避免误改后无法回溯。</p>
+    </div></div>
+    <div class="step"><div class="num">3</div><div class="body">
+      <p><b>提交前核查：</b>菜单 <code>File › Validate</code>（验证）与 <code>Status report</code>（状态报告）可检查缺失项与完整性；逐项核对正文数字与森林图是否一致、亚组与敏感性分析是否已如实描述。</p>
+    </div></div>
+    <div class="box danger"><span class="t">重要</span>
+      非 Cochrane 模式下全部数据仅存于本机。请务必将 <code>.rm5</code> 文件纳入你的常规备份（如外置盘或网盘），否则一旦磁盘故障将无可恢复的云端副本。
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section id="s10">
+    <h2><span class="badge">10</span>统计要点与数据规范<span class="time">速查</span></h2>
+    <table>
+      <tr><th>决策点</th><th>推荐做法</th></tr>
+      <tr><td>二分类效应量选 RR 还是 OR</td><td>事件较常见、需直观解释时优先 <b>RR</b>；稀有事件或病例对照研究可用 <b>OR</b>。全文统一并说明。</td></tr>
+      <tr><td>连续变量选 MD 还是 SMD</td><td>各研究使用<b>相同量表与单位</b>用 <b>MD</b>；量表不同或单位不一时用 <b>SMD</b>。</td></tr>
+      <tr><td>固定 vs 随机效应模型</td><td>研究间仅存在抽样误差可用固定效应；存在临床或方法学异质性（常以 <code>I² &gt; 50%</code> 为参考）优先随机效应。Cochrane 手册倾向：有临床异质性时即使 I² 不高也可考虑随机效应。</td></tr>
+      <tr><td>异质性处理</td><td>先核查数据录入与临床异质性；必要时做预设亚组分析或敏感性分析，并在 Discussion 中解释，不要仅凭统计指标机械决定。</td></tr>
+      <tr><td>从文献提取数据</td><td>二分类取事件数与总人数；连续取 mean ± SD 与 n；只报 median (IQR) 时按统计方法估算并标注；生存数据取 HR 与 95%CI 时用 Generic Inverse Variance。</td></tr>
+      <tr><td>结果与结论一致</td><td>摘要、正文、森林图三处的效应量、CI、P 值与 I² 必须逐一对应；任何探索性发现须明确标注，不得写成预设结论。</td></tr>
+    </table>
+  </section>
+
+  <!-- 11 -->
+  <section id="s11">
+    <h2><span class="badge">11</span>常见问题排查<span class="time">速查</span></h2>
+
+    <details><summary>首次启动后程序闪退或自动退出？</summary><div class="ans"><p>多为首次加载 Java 环境或更新检查触发。本机经实测可正常启动；若遇退出，重新打开即可，通常第二次启动稳定。若反复闪退，检查是否误选 Cochrane 模式导致连接服务器失败——可在偏好设置或 Usage mode 中切回 non-Cochrane。</p></div></details>
+
+    <details><summary>启动时报无法连接 rm5.cochrane.org / WSDL 错误？</summary><div class="ans"><p>说明当前处于 Cochrane 模式或尝试联网校验。请切换到 non-Cochrane（非 Cochrane）模式离线使用；本机网络访问该域名受限，属正常现象，不影响本地建库与分析。</p></div></details>
+
+    <details><summary>右键菜单出不来？</summary><div class="ans"><p>Mac 上右键 = <kbd>Control</kbd>+单击，或触控板双指点按；也可在辅助设置中开启鼠标右键。</p></div></details>
+
+    <details><summary>森林图上出现向左 / 向右的箭头？</summary><div class="ans"><p>某研究的置信区间超出了当前横轴范围。拖动图下方的 scale 滑块扩大刻度，直到箭头消失。</p></div></details>
+
+    <details><summary>从 Excel 粘贴后数据错位或报错？</summary><div class="ans"><p>检查：① Excel 中研究顺序与 RevMan 数据表顺序是否一致；② 列序是否正确（二分类 E/N 的位置；连续型 Mean/SD/N 的位置）；③ 单元格内是否混入文本、空格、全角字符或不规范的减号。确保起始单元格为数据区左上角。</p></div></details>
+
+    <details><summary>想换结局的数据类型，已有数据怎么办？</summary><div class="ans"><p>右键 outcome → Properties → General 可改 Data type，但<b>更换数据类型会清空已录入的数据</b>。请在录数前确定类型；确需变更时先另存备份。</p></div></details>
+
+    <details><summary>为什么森林图数据是空的 / 无法计算？</summary><div class="ans"><p>排查顺序：① 综述是否为 Full review（Protocol 不能计算）；② 研究是否已加入 Included studies；③ 研究是否已通过 Add Study Data 挂到该结局下；④ 数据是否完整录入。</p></div></details>
+
+    <details><summary>结局下想同时挂研究和亚组可以吗？</summary><div class="ans"><p>不可以。一个结局下要么直接包含研究，要么包含亚组（研究放在亚组内）。若已挂研究，可用右键 <code>Introduce Subgroup</code> 将其转入新建亚组。</p></div></details>
+
+    <hr>
+    <div class="box note"><span class="t">配套资料</span>
+      软件内置权威参考：<br>
+      · 用户手册：<span class="path">/Applications/RevMan/Review Manager 5.4.app/Contents/java/app/doc/userguide/rm5userguide.pdf</span><br>
+      · 交互式教程：<span class="path">…/doc/tutorial/rm5tutorial.pdf</span>（含示例文件 <code>Caffeine for daytime drowsiness.rm5</code>，可作为建库模板对照练习）<br>
+      · 菜单 <code>Help › Tutorial › Intervention Reviews</code> 可直接打开。
+    </div>
+  </section>
+
+  <footer>
+    <div style="max-width:760px;margin:0 auto 14px;padding:14px 18px;background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:10px;text-align:left;line-height:1.8;">
+      <strong style="color:var(--brand);">关于本页：</strong>本页为「孟自力 · 心血管健康科普」网站的科研工具栏目内容，面向医学科研工作者。本站主页与博客以大众健康科普为主，本页为方法学工具指引，读者对象有所不同。<br>
+      <strong style="color:var(--brand);">免责声明：</strong>本指引依据 RevMan 5.4.1 官方用户手册（RevMan 5.3 User Guide，105 页）与公开实操教程交叉核对编写，仅用于软件操作与方法学参考，不构成统计咨询；具体统计方案与结论请以研究方案（protocol）及 Cochrane Handbook 为准。
+    </div>
+    本页内容仅供学习交流，转载请注明出处 · © 2026 孟自力心血管健康科普 · 生成日期：2026-11-24<br>
+    <a href="../blog/" style="color:var(--brand);">返回医生博客</a> ｜ <a href="../index.html" style="color:var(--brand);">返回科普主页</a>
+  </footer>
+
+</div>
+</body>
+</html>
