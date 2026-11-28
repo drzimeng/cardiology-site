@@ -167,9 +167,8 @@ a.follow-item:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
 .media-thumb{position:relative;display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;overflow:hidden;text-align:left;font-family:inherit;transition:transform .18s,box-shadow .18s}
 .media-thumb:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(60,30,25,.12)}
 .media-thumb:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
-.media-thumb .thumb-stage{position:relative;display:block;height:104px;overflow:hidden;background:#f4f1ec}
-.media-thumb img,.media-thumb video{width:100%;height:100%;object-fit:cover;display:block}
-.media-thumb .thumb-video{object-position:center 28%}
+.media-thumb .thumb-stage{position:relative;display:block;height:150px;overflow:hidden;background:#f4f1ec;display:flex;align-items:center;justify-content:center}
+.media-thumb img,.media-thumb video{width:100%;height:100%;object-fit:contain;display:block}
 .media-thumb .thumb-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:rgba(179,56,46,.92);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;box-shadow:0 4px 12px rgba(0,0,0,.22)}
 .media-thumb .thumb-label{display:block;padding:8px 10px 9px;font-size:.82rem;line-height:1.5;color:var(--ink-soft)}
 .media-thumb .thumb-label b{color:var(--crimson-deep)}
@@ -545,11 +544,11 @@ footer ul{list-style:none}
         <summary>图示与视频 · 点击缩略图放大播放</summary>
         <div class="dis-media">
           <button class="media-thumb" type="button" data-media="image" data-src="assets/pfo/PFO-img09-反常栓塞-PFO通道.jpg" data-caption="<b>图 1｜反常栓塞机制：</b>静脉系统里的血栓（黄色所示）本应被肺脏滤过，却可能经房间隔上的 PFO“后门”直接进入左心，随动脉血流打入脑动脉，引发缺血性卒中。<b>（3D 示意图）</b>" aria-label="放大查看 PFO 反常栓塞机制示意图">
-            <span class="thumb-stage"><img src="assets/pfo/PFO-img09-反常栓塞-PFO通道.jpg" alt="PFO 反常栓塞机制示意图" loading="lazy"></span>
+            <span class="thumb-stage"><img src="assets/pfo/PFO-img09-反常栓塞-PFO通道.jpg" alt="PFO 反常栓塞机制示意图"></span>
             <span class="thumb-label"><b>图 1｜反常栓塞机制</b><span class="thumb-hint">点击放大查看 →</span></span>
           </button>
           <button class="media-thumb" type="button" data-media="video" data-src="assets/pfo/PFO-v04V-竖版-反常栓塞机制.mp4" data-caption="<b>视频｜</b>血栓经 PFO 抵达脑部的动态演示（竖版，约 9 秒）。封堵术正是通过“关掉这扇后门”来预防复发。" aria-label="放大播放 PFO 反常栓塞机制视频">
-            <span class="thumb-stage"><video class="thumb-video" src="assets/pfo/PFO-v04V-竖版-反常栓塞机制.mp4#t=0.5" preload="metadata" muted playsinline></video><span class="thumb-play" aria-hidden="true">▶</span></span>
+            <span class="thumb-stage"><img src="assets/pfo/PFO-v04V-缩略封面.jpg" alt="PFO 反常栓塞机制视频封面"><span class="thumb-play" aria-hidden="true">▶</span></span>
             <span class="thumb-label"><b>视频｜反常栓塞动态演示</b><span class="thumb-hint">点击放大播放 →</span></span>
           </button>
         </div>
