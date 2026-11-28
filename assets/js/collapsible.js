@@ -73,7 +73,8 @@
   /** 容器直接子元素中的条目（排除按钮自身） */
   function getItems(box) {
     return Array.prototype.filter.call(box.children, function (el) {
-      return el.nodeType === 1 && !el.classList.contains('collapse-toggle');
+      return el.nodeType === 1 && !el.classList.contains('collapse-toggle') &&
+        !el.classList.contains('collapse-exempt');
     });
   }
 
