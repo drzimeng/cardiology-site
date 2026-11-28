@@ -46,6 +46,13 @@
       color: '#E6162D'
     },
     {
+      name: 'GitHub',
+      handle: '@drzimeng',
+      desc: '网站源码 · 开源项目（非诊疗咨询渠道）',
+      url: 'https://github.com/drzimeng/',
+      color: '#24292F'
+    },
+    {
       name: '微信公众号',
       handle: '心血管前沿',
       desc: '图文讲座 · 系列科普',
