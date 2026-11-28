@@ -55,9 +55,8 @@
     {
       name: '抖音',
       handle: '心血管医生 孟自力',
-      desc: '短视频科普',
-      url: '',
-      note: '抖音号 D15633028322 · App 内搜索',
+      desc: '短视频科普 · 4.0万粉丝',
+      url: 'https://www.douyin.com/user/MS4wLjABAAAAN6NkaiWkMjUUy4rB29tRzkzp7kVofMCyTGqHvhu0shmj_KNP8IWPn3bTXCrUOVWR',
       color: '#161823'
     },
     {
