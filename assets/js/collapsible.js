@@ -39,7 +39,7 @@
     /* 折叠隐藏：用 class 控制，与筛选的 inline display 互不干扰 */
     '[data-collapse] > .is-collapsed{display:none}',
     /* 展开按钮 */
-    '.collapse-toggle{display:block;margin:26px auto 4px;padding:11px 28px;',
+    '.collapse-toggle{display:block;margin:14px auto 2px;padding:9px 22px;',
     '  font-family:inherit;font-size:.92rem;font-weight:600;line-height:1;',
     '  color:var(--crimson-deep,#8c2b23);background:#fff;',
     '  border:1.5px solid var(--crimson,#b3382e);border-radius:999px;cursor:pointer;',
