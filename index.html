@@ -157,12 +157,33 @@ a.follow-item:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
 .dis-block ul li{font-size:.89rem;color:var(--ink-soft);padding-left:18px;position:relative;margin-bottom:3px}
 .dis-block ul li::before{content:"·";position:absolute;left:4px;color:var(--crimson);font-weight:900}
 /* PFO 词条媒体区（机制图 + 竖版视频） */
-.dis-media{display:grid;grid-template-columns:1.35fr 1fr;gap:10px;margin-top:10px;align-items:start}
+.dis-media{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px;align-items:start}
 .dis-fig{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:10px}
 .dis-fig img,.dis-fig video{width:100%;display:block;border-radius:12px;background:#f4f1ec}
 .dis-fig video{max-height:420px;object-fit:contain}
 .dis-fig figcaption{font-size:.85rem;color:var(--ink-soft);line-height:1.75;margin-top:10px}
 .dis-fig figcaption b{color:var(--crimson-deep)}
+/* PFO 图示/视频：小缩略卡片，点击弹窗放大 */
+.media-thumb{position:relative;display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;overflow:hidden;text-align:left;font-family:inherit;transition:transform .18s,box-shadow .18s}
+.media-thumb:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(60,30,25,.12)}
+.media-thumb:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
+.media-thumb .thumb-stage{position:relative;display:block;height:104px;overflow:hidden;background:#f4f1ec}
+.media-thumb img,.media-thumb video{width:100%;height:100%;object-fit:cover;display:block}
+.media-thumb .thumb-video{object-position:center 28%}
+.media-thumb .thumb-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:rgba(179,56,46,.92);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;box-shadow:0 4px 12px rgba(0,0,0,.22)}
+.media-thumb .thumb-label{display:block;padding:8px 10px 9px;font-size:.82rem;line-height:1.5;color:var(--ink-soft)}
+.media-thumb .thumb-label b{color:var(--crimson-deep)}
+.media-thumb .thumb-hint{display:block;margin-top:2px;color:var(--crimson);font-weight:600}
+/* 放大弹窗 */
+.media-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(24,16,14,.78)}
+.media-modal.is-open{display:flex}
+.media-modal .mm-panel{position:relative;width:min(960px,100%);max-height:92vh;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.35);display:flex;flex-direction:column}
+.media-modal .mm-close{position:absolute;right:12px;top:12px;z-index:2;width:36px;height:36px;border:0;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer}
+.media-modal .mm-close:hover{background:var(--crimson)}
+.media-modal .mm-body{background:#000;display:flex;align-items:center;justify-content:center;min-height:180px;max-height:78vh;overflow:hidden}
+.media-modal .mm-body img,.media-modal .mm-body video{max-width:100%;max-height:78vh;display:block;object-fit:contain}
+.media-modal .mm-cap{padding:12px 18px 16px;font-size:.88rem;line-height:1.7;color:var(--ink-soft)}
+.media-modal .mm-cap b{color:var(--crimson-deep)}
 /* PFO 图示/视频默认收起 */
 .media-fold{margin-top:10px;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
 .media-fold>summary{cursor:pointer;list-style:none;padding:10px 14px;font-size:.88rem;font-weight:600;color:var(--crimson-deep);display:flex;align-items:center;gap:8px}
@@ -521,17 +542,17 @@ footer ul{list-style:none}
         </div>
       </div>
       <details class="media-fold">
-        <summary>图示与视频 · 点击展开</summary>
-      <div class="dis-media">
-        <figure class="dis-fig">
-          <img src="assets/pfo/PFO-img09-反常栓塞-PFO通道.jpg" alt="PFO 反常栓塞机制示意图：静脉血栓经卵圆孔进入脑循环" loading="lazy">
-          <figcaption><b>图 1｜反常栓塞机制：</b>静脉系统里的血栓（黄色所示）本应被肺脏滤过，却可能经房间隔上的 PFO"后门"直接进入左心，随动脉血流打入脑动脉，引发缺血性卒中。<b>（3D 示意图）</b></figcaption>
-        </figure>
-        <figure class="dis-fig">
-          <video src="assets/pfo/PFO-v04V-竖版-反常栓塞机制.mp4" controls playsinline preload="metadata"></video>
-          <figcaption><b>视频｜</b>血栓经 PFO 抵达脑部的动态演示（竖版，约 9 秒，可点击播放）。封堵术正是通过"关掉这扇后门"来预防复发。</figcaption>
-        </figure>
-      </div>
+        <summary>图示与视频 · 点击展开（缩略图可点击放大播放）</summary>
+        <div class="dis-media">
+          <button class="media-thumb" type="button" data-media="image" data-src="assets/pfo/PFO-img09-反常栓塞-PFO通道.jpg" data-caption="<b>图 1｜反常栓塞机制：</b>静脉系统里的血栓（黄色所示）本应被肺脏滤过，却可能经房间隔上的 PFO“后门”直接进入左心，随动脉血流打入脑动脉，引发缺血性卒中。<b>（3D 示意图）</b>" aria-label="放大查看 PFO 反常栓塞机制示意图">
+            <span class="thumb-stage"><img src="assets/pfo/PFO-img09-反常栓塞-PFO通道.jpg" alt="PFO 反常栓塞机制示意图" loading="lazy"></span>
+            <span class="thumb-label"><b>图 1｜反常栓塞机制</b><span class="thumb-hint">点击放大查看 →</span></span>
+          </button>
+          <button class="media-thumb" type="button" data-media="video" data-src="assets/pfo/PFO-v04V-竖版-反常栓塞机制.mp4" data-caption="<b>视频｜</b>血栓经 PFO 抵达脑部的动态演示（竖版，约 9 秒）。封堵术正是通过“关掉这扇后门”来预防复发。" aria-label="放大播放 PFO 反常栓塞机制视频">
+            <span class="thumb-stage"><video class="thumb-video" src="assets/pfo/PFO-v04V-竖版-反常栓塞机制.mp4#t=0.5" preload="metadata" muted playsinline></video><span class="thumb-play" aria-hidden="true">▶</span></span>
+            <span class="thumb-label"><b>视频｜反常栓塞动态演示</b><span class="thumb-hint">点击放大播放 →</span></span>
+          </button>
+        </div>
       </details>
       <div class="tagline"><b>大众须知：</b>体检查出 PFO 不必恐慌——约每 4 个成年人就有 1 个存在 PFO，绝大多数终生相安无事。需要重点关注的是<strong>不明原因的年轻卒中、频繁先兆偏头痛</strong>人群，建议到心血管专科做系统评估，切勿自行长期服用阿司匹林等药物。</div>
       <div class="alert"><b>立即就医的信号</b>突发一侧肢体无力或麻木、口角歪斜、言语不清、视物成双、剧烈头痛、突发眩晕伴走路不稳——这些是脑卒中征象，请立即拨打 120，记录发病时间。</div>
@@ -1671,5 +1692,15 @@ toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'sm
 <script src="assets/js/social-links.js"></script>
 <script src="assets/js/collapsible.js"></script>
 <script src="assets/js/reference-links.js"></script>
+<script src="assets/js/media-lightbox.js"></script>
+
+<!-- 图示/视频放大弹窗 -->
+<div class="media-modal" id="mediaModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="图示与视频放大查看">
+  <div class="mm-panel">
+    <button class="mm-close" type="button" aria-label="关闭">×</button>
+    <div class="mm-body"></div>
+    <div class="mm-cap"></div>
+  </div>
+</div>
 </body>
 </html>
