@@ -62,9 +62,8 @@
     {
       name: '快手',
       handle: '心血管医生 孟自力',
-      desc: '短视频科普',
-      url: '',
-      note: '请在快手 App 内搜索名称关注',
+      desc: '短视频科普 · 心血管医生 孟自力',
+      url: 'https://www.kuaishou.cn/profile/3xkkb6ihjise49g',
       color: '#FF4906'
     },
     {
