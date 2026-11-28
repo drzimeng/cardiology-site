@@ -106,6 +106,22 @@ nav.mainnav a:hover{color:var(--crimson);background:var(--crimson-soft)}
 .quick-links a{font-size:.86rem;font-weight:600;color:var(--ink-soft);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:999px;transition:color .22s,border-color .22s,background .22s,transform .22s}
 .quick-links a:hover{color:var(--crimson);border-color:var(--crimson);background:var(--crimson-soft);transform:translateY(-1px)}
 .quick-links a:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
+/* 首屏关注矩阵 */
+.follow-strip{margin-top:26px;padding:16px 18px 18px;border:1px solid rgba(179,56,46,.24);border-radius:16px;background:linear-gradient(135deg,rgba(179,56,46,.07),rgba(255,255,255,.72));position:relative;overflow:hidden}
+.follow-strip::after{content:"";position:absolute;right:-36px;top:-36px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(179,56,46,.10),transparent 70%);pointer-events:none}
+.follow-title{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px;position:relative;z-index:1}
+.follow-kicker{font-size:1rem;font-weight:700;color:var(--crimson-deep);letter-spacing:.03em}
+.follow-sub{font-size:.78rem;color:var(--ink-soft)}
+.follow-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;position:relative;z-index:1}
+@media(max-width:640px){.follow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.follow-item{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:11px;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .2s,border-color .2s,box-shadow .2s}
+a.follow-item:hover{transform:translateY(-2px);border-color:var(--crimson);box-shadow:0 6px 16px rgba(179,56,46,.12)}
+a.follow-item:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
+.follow-static{cursor:default}
+.follow-dot{width:10px;height:10px;border-radius:50%;background:var(--c,#888);flex:none;box-shadow:0 0 0 3px rgba(0,0,0,.04)}
+.follow-body{display:flex;flex-direction:column;min-width:0;line-height:1.35}
+.follow-name{font-size:.88rem;font-weight:700}
+.follow-note{font-size:.72rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* 数据条脚注 */
 .stats-note{margin-top:12px;font-size:.78rem;color:var(--ink-soft);opacity:.85}
 /* 数据条 */
@@ -374,6 +390,38 @@ footer ul{list-style:none}
         <a href="#sport">科学运动</a>
         <a href="#faq">常见问答</a>
         <a href="blog/index.html#/tag/%E6%AF%8F%E6%97%A5%E5%85%AB%E8%AE%B2">每日八讲</a>
+      </div>
+      <div class="follow-strip" aria-label="关注与平台入口">
+        <div class="follow-title">
+          <span class="follow-kicker">关注我 · 一键直达</span>
+          <span class="follow-sub">科普内容同步更新 · 点开即可找到我</span>
+        </div>
+        <div class="follow-grid">
+          <div class="follow-item follow-static" style="--c:#07C160">
+            <span class="follow-dot"></span>
+            <span class="follow-body"><span class="follow-name">微信公众号</span><span class="follow-note">心血管前沿 · App 内搜索</span></span>
+          </div>
+          <div class="follow-item follow-static" style="--c:#161823">
+            <span class="follow-dot"></span>
+            <span class="follow-body"><span class="follow-name">抖音</span><span class="follow-note">心血管医生 孟自力 · D15633028322</span></span>
+          </div>
+          <div class="follow-item follow-static" style="--c:#FF4906">
+            <span class="follow-dot"></span>
+            <span class="follow-body"><span class="follow-name">快手</span><span class="follow-note">App 内搜索：心血管医生 孟自力</span></span>
+          </div>
+          <a class="follow-item" href="https://space.bilibili.com/670033772" target="_blank" rel="noopener noreferrer" style="--c:#FB7299">
+            <span class="follow-dot"></span>
+            <span class="follow-body"><span class="follow-name">哔哩哔哩</span><span class="follow-note">中长视频 · 系统讲解</span></span>
+          </a>
+          <a class="follow-item" href="https://weibo.com/u/6466313405" target="_blank" rel="noopener noreferrer" style="--c:#E6162D">
+            <span class="follow-dot"></span>
+            <span class="follow-body"><span class="follow-name">微博</span><span class="follow-note">日常动态 · 健康资讯</span></span>
+          </a>
+          <a class="follow-item" href="https://github.com/drzimeng/" target="_blank" rel="noopener noreferrer" style="--c:#24292F">
+            <span class="follow-dot"></span>
+            <span class="follow-body"><span class="follow-name">GitHub</span><span class="follow-note">网站源码 · 非诊疗咨询</span></span>
+          </a>
+        </div>
       </div>
     </div>
     <div class="doc-card card" id="about">
