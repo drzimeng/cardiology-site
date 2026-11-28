@@ -32,11 +32,11 @@ body{
 img{max-width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;letter-spacing:.18em;color:var(--crimson);font-weight:600;margin-bottom:14px;text-transform:uppercase}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;letter-spacing:.18em;color:var(--crimson);font-weight:600;margin-bottom:10px;text-transform:uppercase}
 .eyebrow::before{content:"";width:26px;height:2px;background:var(--crimson)}
 h2.sec-title{font-size:clamp(1.5rem,2.8vw,1.95rem);font-weight:700;letter-spacing:.02em;line-height:1.3;margin-bottom:8px}
-.sec-sub{color:var(--ink-soft);max-width:720px;margin-bottom:22px;font-size:.93rem}
-section{padding:56px 0}
+.sec-sub{color:var(--ink-soft);max-width:720px;margin-bottom:16px;font-size:.93rem}
+section{padding:44px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
 
 /* ============ 顶部导航 ============ */
@@ -68,9 +68,10 @@ nav.mainnav a:hover{color:var(--crimson);background:var(--crimson-soft)}
 .hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
 .hero .wrap > *{min-width:0}
 @media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:40px}}
-.hero h1{font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.22;font-weight:700;letter-spacing:.01em;margin-bottom:14px}
+.hero h1{font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.22;font-weight:700;letter-spacing:.01em;margin-bottom:14px;white-space:nowrap}
+@media(max-width:680px){.hero h1{white-space:normal}}
 .hero h1 em{font-style:normal;color:var(--crimson)}
-.hero p.lead{color:var(--ink-soft);font-size:.96rem;max-width:64ch;margin-bottom:20px}
+.hero p.lead{color:var(--ink-soft);font-size:.96rem;max-width:64ch;margin-bottom:14px}
 .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap}
 .btn{
   display:inline-flex;align-items:center;gap:8px;
@@ -107,14 +108,14 @@ nav.mainnav a:hover{color:var(--crimson);background:var(--crimson-soft)}
 .quick-links a:hover{color:var(--crimson);border-color:var(--crimson);background:var(--crimson-soft);transform:translateY(-1px)}
 .quick-links a:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
 /* 首屏关注矩阵 */
-.follow-strip{margin-top:18px;padding:12px 14px 14px;border:1px solid rgba(179,56,46,.24);border-radius:16px;background:linear-gradient(135deg,rgba(179,56,46,.07),rgba(255,255,255,.72));position:relative;overflow:hidden}
+.follow-strip{margin-top:14px;padding:10px 12px 12px;border:1px solid rgba(179,56,46,.24);border-radius:16px;background:linear-gradient(135deg,rgba(179,56,46,.07),rgba(255,255,255,.72));position:relative;overflow:hidden}
 .follow-strip::after{content:"";position:absolute;right:-36px;top:-36px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(179,56,46,.10),transparent 70%);pointer-events:none}
 .follow-title{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px;position:relative;z-index:1}
 .follow-kicker{font-size:1rem;font-weight:700;color:var(--crimson-deep);letter-spacing:.03em}
 .follow-sub{font-size:.78rem;color:var(--ink-soft)}
-.follow-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;position:relative;z-index:1}
+.follow-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;position:relative;z-index:1}
 @media(max-width:640px){.follow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.follow-item{display:flex;align-items:center;gap:8px;padding:8px 9px;border-radius:11px;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .2s,border-color .2s,box-shadow .2s}
+.follow-item{display:flex;align-items:center;gap:7px;padding:7px 8px;border-radius:11px;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .2s,border-color .2s,box-shadow .2s}
 a.follow-item:hover{transform:translateY(-2px);border-color:var(--crimson);box-shadow:0 6px 16px rgba(179,56,46,.12)}
 a.follow-item:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
 .follow-static{cursor:default}
@@ -125,15 +126,15 @@ a.follow-item:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
 /* 数据条脚注 */
 .stats-note{margin-top:12px;font-size:.78rem;color:var(--ink-soft);opacity:.85}
 /* 数据条 */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
 @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 14px;text-align:center}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 12px;text-align:center}
 .stat b{display:block;font-size:1.75rem;color:var(--crimson);font-weight:700;letter-spacing:.02em}
 .stat span{font-size:.85rem;color:var(--ink-soft)}
 
 /* ============ 疾病科普 ============ */
 #diseases{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.dis-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.dis-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .dis-tab{
   padding:10px 22px;border-radius:999px;border:1.5px solid var(--line);
   background:#fff;cursor:pointer;font-size:.95rem;font-weight:600;color:var(--ink-soft);
@@ -144,24 +145,31 @@ a.follow-item:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
 .dis-panel{display:none;animation:fadeUp .5s ease both}
 .dis-panel.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.dis-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.dis-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media(max-width:900px){.dis-grid{grid-template-columns:1fr}}
-.dis-block{padding:18px 18px 16px}
+.dis-block{padding:14px 14px 12px}
 .dis-block h4{
-  display:flex;align-items:center;gap:10px;font-size:1rem;margin-bottom:9px;color:var(--crimson-deep);
+  display:flex;align-items:center;gap:10px;font-size:1rem;margin-bottom:7px;color:var(--crimson-deep);
 }
 .dis-block h4 .ic{width:34px;height:34px;flex:none;border-radius:10px;background:var(--crimson-soft);display:flex;align-items:center;justify-content:center;color:var(--crimson)}
-.dis-block p{font-size:.9rem;color:var(--ink-soft);margin-bottom:6px}
+.dis-block p{font-size:.9rem;color:var(--ink-soft);margin-bottom:4px}
 .dis-block ul{margin:8px 0 0 0;padding-left:0;list-style:none}
-.dis-block ul li{font-size:.89rem;color:var(--ink-soft);padding-left:18px;position:relative;margin-bottom:4px}
+.dis-block ul li{font-size:.89rem;color:var(--ink-soft);padding-left:18px;position:relative;margin-bottom:3px}
 .dis-block ul li::before{content:"·";position:absolute;left:4px;color:var(--crimson);font-weight:900}
 /* PFO 词条媒体区（机制图 + 竖版视频） */
-.dis-media{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin-top:14px;align-items:start}
+.dis-media{display:grid;grid-template-columns:1.35fr 1fr;gap:10px;margin-top:10px;align-items:start}
 .dis-fig{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:10px}
 .dis-fig img,.dis-fig video{width:100%;display:block;border-radius:12px;background:#f4f1ec}
 .dis-fig video{max-height:420px;object-fit:contain}
 .dis-fig figcaption{font-size:.85rem;color:var(--ink-soft);line-height:1.75;margin-top:10px}
 .dis-fig figcaption b{color:var(--crimson-deep)}
+/* PFO 图示/视频默认收起 */
+.media-fold{margin-top:10px;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.media-fold>summary{cursor:pointer;list-style:none;padding:10px 14px;font-size:.88rem;font-weight:600;color:var(--crimson-deep);display:flex;align-items:center;gap:8px}
+.media-fold>summary::-webkit-details-marker{display:none}
+.media-fold>summary::before{content:"\25B8";color:var(--crimson);transition:transform .2s}
+.media-fold[open]>summary::before{transform:rotate(90deg)}
+.media-fold .dis-media{margin-top:0;padding:0 14px 14px}
 @media(max-width:900px){.dis-media{grid-template-columns:1fr}.dis-fig video{max-height:340px}}
 .tagline{
   margin-top:24px;padding:16px 22px;border-radius:14px;
@@ -253,10 +261,10 @@ table.target td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
 }
 .rf:hover{border-color:var(--crimson);color:var(--crimson)}
 .rf.active{background:var(--crimson);border-color:var(--crimson);color:#fff}
-.recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 @media(max-width:1000px){.recipes{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.recipes{grid-template-columns:1fr}}
-.recipe{padding:18px;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.recipe{padding:14px;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
 .recipe:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(60,30,25,.12)}
 .recipe .r-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
 .recipe h4{font-size:1.08rem;line-height:1.4}
@@ -270,9 +278,9 @@ table.target td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
 .recipe .r-sec span{color:var(--ink)}
 .recipe .note{font-size:.8rem;color:var(--green);margin-top:auto;padding-top:9px;border-top:1px dashed var(--line)}
 /* 调味技巧 */
-.season-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
+.season-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
 @media(max-width:900px){.season-grid{grid-template-columns:1fr}}
-.season{padding:18px}
+.season{padding:14px}
 .season h4{margin-bottom:12px;display:flex;gap:10px;align-items:center}
 .season h4 .n{width:28px;height:28px;flex:none;border-radius:50%;background:var(--crimson);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700}
 .season ol{padding-left:20px}
@@ -375,7 +383,7 @@ footer ul{list-style:none}
   <div class="wrap">
     <div>
       <span class="eyebrow">主任医师 · 心血管病专家</span>
-      <h1>用心守护<br>每一次<em>心跳</em></h1>
+      <h1>用心守护 每一次<em>心跳</em></h1>
       <p class="lead">大家好，我是孟自力。这里是我的心血管健康科普平台——把诊室里被反复问到的关于<strong>卵圆孔未闭（PFO）、心脏瓣膜病、冠心病、先天性心脏病、大血管疾病</strong>的问题，以及<strong>预防、饮食、烹饪与运动</strong>的实用知识，用大众都能读懂的方式讲清楚。</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#diseases">开始了解心血管疾病</a>
@@ -477,7 +485,7 @@ footer ul{list-style:none}
 
     <!-- PFO -->
     <div class="dis-panel active" id="p1">
-      <div class="dis-grid" data-collapse="2">
+      <div class="dis-grid" data-collapse="1">
         <div class="card dis-block">
           <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></span>什么是卵圆孔未闭（PFO）？</h4>
           <p>卵圆孔是胎儿时期心脏房间隔上的一个"小通道"，让血液绕过尚未工作的肺脏。绝大多数人出生后一年内会自然闭合；约四分之一的成年人未能完全闭合，遗留一个潜在通道，这就是<strong>卵圆孔未闭</strong>。</p>
@@ -512,6 +520,8 @@ footer ul{list-style:none}
           </ul>
         </div>
       </div>
+      <details class="media-fold">
+        <summary>图示与视频 · 点击展开</summary>
       <div class="dis-media">
         <figure class="dis-fig">
           <img src="assets/pfo/PFO-img09-反常栓塞-PFO通道.jpg" alt="PFO 反常栓塞机制示意图：静脉血栓经卵圆孔进入脑循环" loading="lazy">
@@ -522,13 +532,14 @@ footer ul{list-style:none}
           <figcaption><b>视频｜</b>血栓经 PFO 抵达脑部的动态演示（竖版，约 9 秒，可点击播放）。封堵术正是通过"关掉这扇后门"来预防复发。</figcaption>
         </figure>
       </div>
+      </details>
       <div class="tagline"><b>大众须知：</b>体检查出 PFO 不必恐慌——约每 4 个成年人就有 1 个存在 PFO，绝大多数终生相安无事。需要重点关注的是<strong>不明原因的年轻卒中、频繁先兆偏头痛</strong>人群，建议到心血管专科做系统评估，切勿自行长期服用阿司匹林等药物。</div>
       <div class="alert"><b>立即就医的信号</b>突发一侧肢体无力或麻木、口角歪斜、言语不清、视物成双、剧烈头痛、突发眩晕伴走路不稳——这些是脑卒中征象，请立即拨打 120，记录发病时间。</div>
     </div>
 
     <!-- 瓣膜病 -->
     <div class="dis-panel" id="p2">
-      <div class="dis-grid" data-collapse="2">
+      <div class="dis-grid" data-collapse="1">
         <div class="card dis-block">
           <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg></span>什么是心脏瓣膜病？</h4>
           <p>心脏里有四扇"单向阀门"（二尖瓣、三尖瓣、主动脉瓣、肺动脉瓣），保证血液朝一个方向流动。当阀门出现<strong>狭窄</strong>（打不开）或<strong>关闭不全</strong>（关不拢）时，心脏做功增加，久之可致心脏扩大、心律失常和心力衰竭。</p>
@@ -569,7 +580,7 @@ footer ul{list-style:none}
 
     <!-- 冠心病 -->
     <div class="dis-panel" id="p3">
-      <div class="dis-grid" data-collapse="2">
+      <div class="dis-grid" data-collapse="1">
         <div class="card dis-block">
           <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.8-9.2C.6 8.3 2.6 4.5 6.4 4.5c2.2 0 3.8 1.2 4.6 2.4l1 1.4 1-1.4c.8-1.2 2.4-2.4 4.6-2.4 3.8 0 5.8 3.8 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg></span>什么是冠心病？</h4>
           <p>冠状动脉是为心脏自身供血的血管。当它发生<strong>动脉粥样硬化、管腔狭窄</strong>，心肌供氧不足时，即为冠状动脉粥样硬化性心脏病，简称冠心病。危险因素包括高血压、血脂异常、糖尿病、吸烟、肥胖、早发冠心病家族史、年龄增长及长期精神紧张等。</p>
@@ -610,7 +621,7 @@ footer ul{list-style:none}
 
     <!-- 先心病 -->
     <div class="dis-panel" id="p4">
-      <div class="dis-grid" data-collapse="2">
+      <div class="dis-grid" data-collapse="1">
         <div class="card dis-block">
           <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2"/></svg></span>什么是先天性心脏病？</h4>
           <p>先心病是胎儿期心脏及大血管发育异常所致的结构畸形，是最常见的出生缺陷之一。常见类型包括<strong>房间隔缺损（ASD）、室间隔缺损（VSD）、动脉导管未闭（PDA）、肺动脉瓣狭窄</strong>，以及法洛四联症等复杂畸形。</p>
@@ -652,7 +663,7 @@ footer ul{list-style:none}
 
     <!-- 大血管 -->
     <div class="dis-panel" id="p5">
-      <div class="dis-grid" data-collapse="2">
+      <div class="dis-grid" data-collapse="1">
         <div class="card dis-block">
           <h4><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v6c0 2 1.5 3 3 3s3-1 3-3 1.5-3 3-3 3 1 3 3v6"/></svg></span>什么是大血管疾病？</h4>
           <p>大血管疾病指主动脉及其主要分支的病变，最凶险的两类是：</p>
